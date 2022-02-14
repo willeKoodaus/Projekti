@@ -1,18 +1,45 @@
 header {
-    background: lightgreen;
+    background: #086788;
     width: 100%;
+    text-align: center;
+    font-family: 'Red Hat Display', sans-serif;
+    color: white;
+
 }
 
 aside {
-    background: yellow;
+    background: #4396AC;
     width: 100%;
+    font-family: 'Red Hat Display', sans-serif;
+    color: white;
+    line-height: 200%;
+    font-size: 20px;
 }
 
-main { width: 100%; background: #88f; }
+aside a {
+    text-decoration: none;
+    color: white;
+}
 
-#page-container {
+ul {
+    list-style-type: none;
+}
+
+main { width: 100%;
+    background: #7EC4CF;
+    text-align: center;
+    font-family: 'Red Hat Display', sans-serif;
+}
+
+body {
     display: flex;
     flex-wrap: wrap;
+}
+
+article {
+    background: #F0F8F9;
+    margin: 50px;
+    padding: 20px;
 }
 
 @media only screen and (min-width: 600px) {
