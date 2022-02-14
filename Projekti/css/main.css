@@ -1,0 +1,21 @@
+header {
+    background: lightgreen;
+    width: 100%;
+}
+
+aside {
+    background: yellow;
+    width: 100%;
+}
+
+main { width: 100%; background: #88f; }
+
+#page-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@media only screen and (min-width: 600px) {
+    aside { width: 25%; }
+    main { width: 75%; }
+}
