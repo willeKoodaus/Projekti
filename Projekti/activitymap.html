@@ -2,9 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>events and activities</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab&amp;subset=latin-ext"
+          rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
 </head>
 <body>
-
+<div class="container">
+    <header>
+        <h1>events and activities</h1>
+    </header>
+    <div id="map"></div>
+<main>
+<article>
+    <h3 id="name"></h3>
+    <div id="navigate">
+        <div>
+            <a href="#" target="_blank">Navigate</a>
+        </div>
+    </div>
+    <h4 id="address"></h4>
+    <p id="description"></p>
+    <p id="whereWhenDuration"></p>
+</article>
+</main>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+<script src="js/activitymap.js"></script>
 </body>
 </html>

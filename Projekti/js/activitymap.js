@@ -1,79 +1,84 @@
 'use strict';
 
-// Käytetään leaflet.js -kirjastoa näyttämään sijainti kartalla (https://leafletjs.com/)
+// leaflet.js -library is used to show position on the map (https://leafletjs.com/)
 const map = L.map('map');
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(map);
 
-// Asetukset paikkatiedon hakua varten (valinnainen)
+// settings for location
 const options = {
   enableHighAccuracy: true,
   timeout: 5000,
   maximumAge: 0,
 };
 
-//ikonit
-const punainenIkoni = L.divIcon({className: 'punainen-ikoni'});
-const vihreaIkoni = L.divIcon({className: 'vihrea-ikoni'});
+//icons for the map
+const redIcon = L.divIcon({className: 'red-icon'});
+const greenIcon = L.divIcon({className: 'green-icon'});
 
-// Funktio, joka ajetaan, kun paikkatiedot on haettu
+// function to be used after location has been found.
 function success(pos) {
   const crd = pos.coords;
   map.setView([crd.latitude, crd.longitude], 13);
 
-  const omaPaikka = LisaaMarker(crd, 'Olen tässä', punainenIkoni);
-  omaPaikka.openPopup();
+  const ownLocation = addMarker(crd, 'I am here', redIcon);
+  ownLocation.openPopup();
 
-  haeLatauspisteet(crd).then(function(eventit) {
-    for (let i = 0; i < eventit.length; i++) {
-      const teksti = eventit[i].id;
-      const koordinaatit = {
-        latitude: eventit[i].Coordinates.latitude,
-        longitude: eventit[i].Coordinates.longitude,
+  getEvents(crd).then(function(events) {
+    for (let i = 0; i < events.length; i++) {
+      const text = events[i].id;
+      const coordinates = {
+        latitude: events[i].Coordinates.latitude,
+        longitude: events[i].Coordinates.longitude,
       };
-      const markkeri = LisaaMarker(koordinaatit, teksti, vihreaIkoni);
-      markkeri.on('click', function() {
+      const marker = addMarker(coordinates, text, greenIcon);
+      marker.on('click', function() {
         document.querySelector(
-            '#name').innerHTML = eventit[i].Name.fi;
+            '#name').innerHTML = events[i].Name.fi;
         document.querySelector(
-            '#address').innerHTML = eventit[i].Address.streetAddress;
+            '#address').innerHTML = events[i].Address.streetAddress;
         document.querySelector(
-            '#whereWhenDuration').innerHTML = eventit[i].WhereWhenDurationTranslated.whereAndWhen;
+            '#whereWhenDuration').innerHTML = events[i].WhereWhenDurationTranslated.whereAndWhen;
         document.querySelector(
-            '#description').innerHTML = eventit[i].Description.intro;
+            '#description').innerHTML = events[i].Description.intro;
         const address = `https://www.google.com/maps/dir/?api=1&origin=${crd.latitude},${crd.longitude}
-        &destination=${koordinaatit.latitude},${koordinaatit.longitude}&travelmode=driving&dir_action=navigate`;
+        &destination=${Coordinates.latitude},${Coordinates.longitude}&travelmode=driving&dir_action=navigate`;
 
-        document.querySelector('#navigoi a').href = address;
+        document.querySelector('#navigate a').href = address;
       });
     }
   });
 }
 
-// Funktio, joka ajetaan, jos paikkatietojen hakemisessa tapahtuu virhe
+// function for errors if location search failed
 function error(err) {
   console.warn(`ERROR(${err.code}): ${err.message}`);
 }
 
-// Käynnistetään paikkatietojen haku
+// location search initiated
 navigator.geolocation.getCurrentPosition(success, error, options);
 
-function haeLatauspisteet(crd) {
+// function for fetching the events from api.myhelsinki
+function getEvents() {
+  const proxy = 'https://api.allorigins.win/get?url=';
+  const search = `https://open-api.myhelsinki.fi/v1/events/`;
+  const url = proxy + encodeURIComponent(search);
   return fetch(
-      `https://open-api.myhelsinki.fi/v1/events/`,
+      url
   ).
-      then(function(vastaus) {
-        return vastaus.json();
+      then(function(answer) {
+        return answer.json();
       }).
-      then(function(eventit) {
-        console.log(eventit[0].AddressInfo);
-        return eventit;
+      then(function(data) {
+        console.log(JSON.parse(data.contents));
+        const events = JSON.parse(data.contents);
+        return events;
       });
 }
-
-function LisaaMarker(crd, teksti, ikoni) {
-  return L.marker([crd.latitude, crd.longitude], {icon: ikoni}).
+// function for adding a marker to the map
+function addMarker(crd, text, icon) {
+  return L.marker([crd.latitude, crd.longitude], {icon: icon}).
       addTo(map).
-      bindPopup(teksti);
+      bindPopup(text);
 }
