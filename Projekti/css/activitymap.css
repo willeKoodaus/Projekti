@@ -1,0 +1,83 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+}
+
+h1, h2 {
+    font-family: 'Roboto Slab', serif;
+}
+
+header {
+    width: 100%;
+    background-color: #000;
+    color: #fff;
+    margin: 0 -1rem;
+    padding: 0 2rem;
+}
+
+main {
+    width: 100%;
+}
+
+article {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#map {
+    width: 100%;
+    height: 60vh;
+}
+
+#name, #navigate {
+    width: 50%;
+}
+
+#navigate {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#navigate a {
+    display: block;
+    line-height: 3rem;
+    text-align: center;
+    color: #fff;
+    background-color: #3fb4f4;
+    box-sizing: border-box;
+    padding: .5rem;
+    text-decoration: none;
+}
+
+#address, #whereWhenDuration, #description {
+    width: 100%;
+    margin: 0.3rem 0;
+}
+
+.container {
+    width: 100%;
+    padding: 0 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+
+/* leaflet ikonit */
+.red-icon {
+    background: #ff6324;
+    border: 5px solid rgba(255, 255, 255, 0.5);
+    font-weight: bold;
+    text-align: center;
+    border-radius: 50%;
+    line-height: 30px;
+}
+
+.green-icon {
+    background: #27ba35;
+    border: 5px solid rgba(255, 255, 255, 0.5);
+    font-weight: bold;
+    text-align: center;
+    border-radius: 50%;
+    line-height: 30px;
+}
