@@ -26,22 +26,22 @@ function success(pos) {
   ownLocation.openPopup();
 
   getEvents(crd).then(function(events) {
-    for (let i = 0; i < events.length; i++) {
-      const text = events[i].id;
+    for (let i = 0; i < events.data.length; i++) {
+      const text = events.data[i].name.fi;
       const coordinates = {
-        latitude: events[i].Coordinates.latitude,
-        longitude: events[i].Coordinates.longitude,
+        latitude: events.data[i].location.lat,
+        longitude: events.data[i].location.lon,
       };
       const marker = addMarker(coordinates, text, greenIcon);
       marker.on('click', function() {
         document.querySelector(
-            '#name').innerHTML = events[i].Name.fi;
+            '#name').innerHTML = events.data[i].name.fi;
         document.querySelector(
-            '#address').innerHTML = events[i].Address.streetAddress;
+            '#address').innerHTML = events.data[i].location.address.street_address;
         document.querySelector(
-            '#whereWhenDuration').innerHTML = events[i].WhereWhenDurationTranslated.whereAndWhen;
+            '#whereWhenDuration').innerHTML = events.data[i].event_dates.starting_day;
         document.querySelector(
-            '#description').innerHTML = events[i].Description.intro;
+            '#description').innerHTML = events.data[i].description.intro;
         const address = `https://www.google.com/maps/dir/?api=1&origin=${crd.latitude},${crd.longitude}
         &destination=${Coordinates.latitude},${Coordinates.longitude}&travelmode=driving&dir_action=navigate`;
 
@@ -64,9 +64,7 @@ function getEvents() {
   const proxy = 'https://api.allorigins.win/get?url=';
   const search = `https://open-api.myhelsinki.fi/v1/events/`;
   const url = proxy + encodeURIComponent(search);
-  return fetch(
-      url
-  ).
+  return fetch(url).
       then(function(answer) {
         return answer.json();
       }).
