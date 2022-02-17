@@ -62,7 +62,7 @@ navigator.geolocation.getCurrentPosition(success, error, options);
 // function for fetching the events from api.myhelsinki
 function getEvents() {
   const proxy = 'https://api.allorigins.win/get?url=';
-  const search = `https://open-api.myhelsinki.fi/v1/events/`;
+  const search = `https://open-api.myhelsinki.fi/v1/events/?tags_search=opiskelija%2Cmuseo`;
   const url = proxy + encodeURIComponent(search);
   return fetch(url).
       then(function(answer) {
