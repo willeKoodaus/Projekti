@@ -1,33 +1,76 @@
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 h1, h2 {
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Red Hat Display', sans-serif;
 }
 
 header {
+    background: #093A3E;
     width: 100%;
-    background-color: #000;
-    color: #fff;
-    margin: 0 -1rem;
-    padding: 0 2rem;
+    text-align: center;
+    font-family: 'Red Hat Display', sans-serif;
+    color: white;
+    padding: 20px;
+    font-size: 20px;
+
 }
 
 main {
     width: 100%;
+    background: #C5E0E6;
 }
 
 article {
+    padding: 10px 60px 20px 60px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
 
+aside {
+    background: #6FAFC0;
+    width: 100%;
+    font-family: 'Red Hat Display', sans-serif;
+    color: white;
+    line-height: 200%;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+
+}
+
+aside a {
+    text-decoration: none;
+    color: black;
+    line-height: 500%;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
 #map {
     width: 100%;
-    height: 60vh;
+    height: 55vh;
+    margin: 50px 50px 10px 50px;
 }
 
 #name, #navigate {
@@ -43,11 +86,14 @@ article {
     display: block;
     line-height: 3rem;
     text-align: center;
+    font-family: 'Red Hat Display', sans-serif;
+    font-weight: bold;
     color: #fff;
-    background-color: #3fb4f4;
+    background-color: #093A3E;
     box-sizing: border-box;
     padding: .5rem;
     text-decoration: none;
+    border-radius: 15px;
 }
 
 #address, #whereWhenDuration, #description {
@@ -57,10 +103,11 @@ article {
 
 .container {
     width: 100%;
-    padding: 0 1rem;
+    padding: 0;
     display: flex;
     flex-wrap: wrap;
     box-sizing: border-box;
+    background: #C5E0E6;
 }
 
 /* leaflet ikonit */
@@ -80,4 +127,32 @@ article {
     text-align: center;
     border-radius: 50%;
     line-height: 30px;
+}
+
+@media only screen and (min-width: 600px) {
+    aside {
+        width: 25%;
+        font-size: 20px;
+        align-items: center;
+    }
+
+    li {
+        float: none;
+    }
+
+    main {
+        width: 100%;
+    }
+
+    header {
+        width: 100%;
+    }
+
+    article {
+        max-height: 500px;
+    }
+
+    .container {
+        width: 75%;
+    }
 }
