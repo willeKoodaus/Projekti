@@ -61,8 +61,9 @@ navigator.geolocation.getCurrentPosition(success, error, options);
 
 // function for fetching the events from api.myhelsinki
 function getEvents() {
+  const tags = `Culture and leisure%2CLibraries and services%2CLibraries%2CStudents%2CExhibitions%2CConcerts and clubs%2CEnvironment and nature`
   const proxy = 'https://api.allorigins.win/get?url=';
-  const search = `https://open-api.myhelsinki.fi/v1/events/?tags_search=opiskelija%2Cmuseo`;
+  const search = `https://open-api.myhelsinki.fi/v1/events/?tags_search=${tags}`;
   const url = proxy + encodeURIComponent(search);
   return fetch(url).
       then(function(answer) {
