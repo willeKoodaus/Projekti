@@ -43,7 +43,7 @@ function success(pos) {
         document.querySelector(
             '#description').innerHTML = events.data[i].description.intro;
         const address = `https://www.google.com/maps/dir/?api=1&origin=${crd.latitude},${crd.longitude}
-        &destination=${Coordinates.latitude},${Coordinates.longitude}&travelmode=driving&dir_action=navigate`;
+        &destination=${coordinates.latitude},${coordinates.longitude}&travelmode=driving&dir_action=navigate`;
 
         document.querySelector('#navigate a').href = address;
       });
