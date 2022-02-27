@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>events and activities</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,400;0,800;1,400&display=swap" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+</head>
+<body>
+<header>
+    <h1>Opiskelijan aktiviteettisovellus</h1>
+</header>
+<aside>
+    <ul>
+        <li><a href="index.html"><i class="fa-solid fa-map"></i>&nbsp&nbspAKTIVITEETTIKARTTA</a></li>
+        <li><a href="info.html"><i class="fa-solid fa-circle-info"></i>&nbsp&nbspTIETOA SOVELLUKSESTA</a></li>
+    </ul>
+</aside>
+<div class="container">
+    <div id="map"></div>
+    <main>
+        <article>
+            <h3 id="name"></h3>
+            <div id="navigate">
+                <div>
+                    <a href="#" target="_blank">Navigate</a>
+                </div>
+            </div>
+            <h4 id="address"></h4>
+            <p id="description"></p>
+            <p id="whereWhenDuration"></p>
+        </article>
+    </main>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+<script src="js/main.js"></script>
+<script src="https://kit.fontawesome.com/629b39116a.js" crossorigin="anonymous"></script>
+</body>
+</html>
