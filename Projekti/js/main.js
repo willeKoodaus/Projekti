@@ -24,7 +24,7 @@ function success(pos) {
 
   const ownLocation = addMarker(crd, 'I am here', redIcon);
   ownLocation.openPopup();
-
+  getPlaces();
   getEvents(crd).then(function(events) {
     for (let i = 0; i < events.data.length; i++) {
       const text = events.data[i].name.fi;
@@ -50,6 +50,7 @@ function success(pos) {
     }
   });
 }
+
 
 // function for errors if location search failed
 function error(err) {
@@ -80,4 +81,21 @@ function addMarker(crd, text, icon) {
   return L.marker([crd.latitude, crd.longitude], {icon: icon}).
       addTo(map).
       bindPopup(text);
+}
+
+// function for fetching the events from https://citynature.eu/api/wp/v2/places
+function getPlaces() {
+  const proxy = 'https://api.allorigins.win/get?url=';
+  const search = `http://lipas.cc.jyu.fi/api/sports-places?fields=www&fields=name&fields=location.coordinates.wgs84&fields=location.address
+`;
+  const url = proxy + encodeURIComponent(search);
+  return fetch(url).
+      then(function(answer) {
+        return answer.json();
+      }).
+      then(function(data) {
+        console.log(JSON.parse(data.contents));
+        const events = JSON.parse(data.contents);
+        return events;
+      });
 }
