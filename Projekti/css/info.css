@@ -26,25 +26,29 @@ aside a {
     color: black;
 }
 
-ul {
+aside ul {
     list-style-type: none;
     margin: 10px;
-    padding: 0px;
+    padding: 0;
     overflow: hidden;
 
 }
 
-li {
+aside li {
     float: left;
 }
 
-li a {
+aside li a {
     display: block;
     color: black;
     text-align: center;
-    padding: 0px 30px 0px 30px;
+    padding: 0 30px 0 30px;
     text-decoration: none;
     font-weight: bold;
+}
+
+article ul {
+    list-style-position: inside;
 }
 
 main {
@@ -58,16 +62,22 @@ body {
     display: flex;
     flex-wrap: wrap;
     margin: 0;
+    line-height: 1.5;
 }
 
 article {
     margin: 70px;
-    padding: 30px;
+    padding: 10px 40px 10px 40px;
     background-color: rgba(256, 256, 256, 0.7);
     border-style: dashed;
     overflow-y: auto;
     max-height: 200px;
     overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
 }
 
 ::-webkit-scrollbar {
@@ -84,18 +94,19 @@ article {
     border-radius: 10px;
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 700px) {
     aside {
         font-size: 20px;
     }
 
     li a {
-        padding: 0px 60px 0px 60px;
+        padding: 0 60px 0 60px;
     }
 
     article {
         min-height: 550px;
         max-height: 550px;
+        padding: 10px 150px 10px 150px;
     }
 
 }
