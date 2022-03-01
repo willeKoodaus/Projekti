@@ -115,6 +115,10 @@ li a {
     background: #C5E0E6;
 }
 
+.checkboxes {
+    padding: 0px 70px 20px 70px;
+}
+
 /* leaflet ikonit */
 .red-icon {
     background: #ff6324;
@@ -126,7 +130,7 @@ li a {
 }
 
 .green-icon {
-    background: #27ba35;
+    background: #2758ba;
     border: 5px solid rgba(255, 255, 255, 0.5);
     font-weight: bold;
     text-align: center;
