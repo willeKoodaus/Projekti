@@ -10,11 +10,11 @@ h1, h2 {
 }
 
 header {
-    background: #093A3E;
+    background: #ffa600;
     width: 100%;
     text-align: center;
     font-family: 'Red Hat Display', sans-serif;
-    color: white;
+    color: #003098;
     padding: 20px;
     font-size: 20px;
 
@@ -22,7 +22,7 @@ header {
 
 main {
     width: 100%;
-    background: #C5E0E6;
+    background: #ffe799;
 }
 
 article {
@@ -33,7 +33,7 @@ article {
 }
 
 aside {
-    background: #6FAFC0;
+    background: #ffeb33;
     width: 100%;
     font-family: 'Red Hat Display', sans-serif;
     color: white;
@@ -63,7 +63,7 @@ li {
 
 li a {
     display: block;
-    color: black;
+    color: #000d98;
     text-align: center;
     padding: 0px 30px 0px 30px;
     text-decoration: none;
@@ -92,8 +92,8 @@ li a {
     text-align: center;
     font-family: 'Red Hat Display', sans-serif;
     font-weight: bold;
-    color: #fff;
-    background-color: #093A3E;
+    color: #003098;
+    background-color: #ffa600;
     box-sizing: border-box;
     padding: .5rem;
     text-decoration: none;
@@ -112,7 +112,7 @@ li a {
     display: flex;
     flex-wrap: wrap;
     box-sizing: border-box;
-    background: #C5E0E6;
+    background: #FFE799FF;
 }
 
 /* leaflet ikonit */
@@ -136,7 +136,7 @@ li a {
 
 .themes {
     width: 100%;
-    background-color: #C5E0E6FF;
+    background-color: #FFE799FF;
     display: flex;
     justify-content: center;
 }
@@ -156,8 +156,8 @@ li a {
 }
 
 [name="theme2"]{
-    background: #bb1d89;
-    -webkit-box-shadow: inset 0px 2.1em 0px -1.6em #ff69c6;
+    background: #ffa600;
+    -webkit-box-shadow: inset 0px 2.1em 0px -1.6em #ffe799;
 }
 
 [name="theme3"]{
@@ -175,7 +175,7 @@ li a {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #6FAFC0;
+    background: #ffa600;
     border-radius: 10px;
 }
 
