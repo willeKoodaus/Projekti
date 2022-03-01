@@ -10,11 +10,11 @@ h1, h2 {
 }
 
 header {
-    background: #093A3E;
+    background: #151515FF;
     width: 100%;
     text-align: center;
     font-family: 'Red Hat Display', sans-serif;
-    color: white;
+    color: #e7e7e7;
     padding: 20px;
     font-size: 20px;
 
@@ -22,7 +22,7 @@ header {
 
 main {
     width: 100%;
-    background: #C5E0E6;
+    background: #545454;
 }
 
 article {
@@ -33,7 +33,7 @@ article {
 }
 
 aside {
-    background: #6FAFC0;
+    background: #333333;
     width: 100%;
     font-family: 'Red Hat Display', sans-serif;
     color: white;
@@ -63,7 +63,7 @@ li {
 
 li a {
     display: block;
-    color: black;
+    color: #e7e7e7;
     text-align: center;
     padding: 0px 30px 0px 30px;
     text-decoration: none;
@@ -79,6 +79,7 @@ li a {
 #name, #navigate {
     width: 50%;
     font-family: 'Red Hat Display', sans-serif;
+    color: #e7e7e7;
 }
 
 #navigate {
@@ -92,8 +93,8 @@ li a {
     text-align: center;
     font-family: 'Red Hat Display', sans-serif;
     font-weight: bold;
-    color: #fff;
-    background-color: #093A3E;
+    color: #e7e7e7;
+    background-color: #e8551f;
     box-sizing: border-box;
     padding: .5rem;
     text-decoration: none;
@@ -104,6 +105,7 @@ li a {
     width: 100%;
     margin: 0.3rem 0;
     font-family: 'Red Hat Display', sans-serif;
+    color: #e7e7e7;
 }
 
 .container {
@@ -112,7 +114,7 @@ li a {
     display: flex;
     flex-wrap: wrap;
     box-sizing: border-box;
-    background: #C5E0E6;
+    background: #545454; //#666666
 }
 
 /* leaflet ikonit */
@@ -134,17 +136,51 @@ li a {
     line-height: 30px;
 }
 
+/* Theme switch settings */
+.themes {
+    width: 100%;
+    background-color: #545454;
+    display: flex;
+    justify-content: center;
+}
+
+.switch {
+    display: inline-block;
+    width: 1.35em;
+    height: 1.35em;
+    margin: 0.1em;
+    border-radius: 50%;
+
+}
+
+/* buttons */
+[name="theme1"]{
+    background: #004938;
+    -webkit-box-shadow: inset 0px 2.1em 0px -1.6em #00d0d0;
+}
+
+[name="theme2"]{
+    background: #bb1d89;
+    -webkit-box-shadow: inset 0px 2.1em 0px -1.6em #ff69c6;
+}
+
+[name="theme3"]{
+    background: #151515;
+    -webkit-box-shadow: inset 0px 2.1em 0px -1.6em #e8551f;
+}
+
+/* custom scroll bar */
 ::-webkit-scrollbar {
     width: 20px;
 }
 
 ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey;
+    box-shadow: inset 0 0 5px #151515FF;
     border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #6FAFC0;
+    background: #e8551f;
     border-radius: 10px;
 }
 
