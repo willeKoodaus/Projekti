@@ -1,16 +1,16 @@
 header {
-    background: #093A3E;
+    background: #ffa600;
     width: 100%;
     text-align: center;
     font-family: 'Red Hat Display', sans-serif;
-    color: white;
+    color: #003098;
     padding: 20px;
     font-size: 20px;
 
 }
 
 aside {
-    background: #6FAFC0;
+    background: #ffeb33;
     width: 100%;
     font-family: 'Red Hat Display', sans-serif;
     color: white;
@@ -40,7 +40,7 @@ aside li {
 
 aside li a {
     display: block;
-    color: black;
+    color: #000d98;
     text-align: center;
     padding: 0 30px 0 30px;
     text-decoration: none;
@@ -53,7 +53,7 @@ article ul {
 
 main {
     width: 100%;
-    background: #C5E0E6;
+    background: #ffe799;
     text-align: center;
     font-family: 'Red Hat Display', sans-serif;
 }
@@ -99,7 +99,7 @@ img {
 
 .themes {
     width: 100%;
-    background-color: #C5E0E6FF;
+    background-color: #FFE799FF;
     display: flex;
     justify-content: center;
 }
@@ -138,7 +138,7 @@ img {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #6FAFC0;
+    background: #ffa600;
     border-radius: 10px;
 }
 

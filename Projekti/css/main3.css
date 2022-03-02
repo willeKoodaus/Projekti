@@ -79,12 +79,12 @@ li a {
 #name, #navigate {
     width: 50%;
     font-family: 'Red Hat Display', sans-serif;
-    color: #e7e7e7;
 }
 
 #navigate {
     display: flex;
     justify-content: flex-end;
+    color: #e7e7e7;
 }
 
 #navigate a {
@@ -114,7 +114,11 @@ li a {
     display: flex;
     flex-wrap: wrap;
     box-sizing: border-box;
-    background: #545454; //#666666
+    background: #545454;
+}
+
+.checkboxes {
+    padding: 0px 70px 20px 70px;
 }
 
 /* leaflet ikonit */
@@ -128,7 +132,7 @@ li a {
 }
 
 .green-icon {
-    background: #27ba35;
+    background: #2758ba;
     border: 5px solid rgba(255, 255, 255, 0.5);
     font-weight: bold;
     text-align: center;
@@ -136,7 +140,6 @@ li a {
     line-height: 30px;
 }
 
-/* Theme switch settings */
 .themes {
     width: 100%;
     background-color: #545454;
@@ -153,29 +156,27 @@ li a {
 
 }
 
-/* buttons */
-[name="theme1"]{
+[name="mainTheme1"]{
     background: #004938;
     -webkit-box-shadow: inset 0px 2.1em 0px -1.6em #00d0d0;
 }
 
-[name="theme2"]{
+[name="mainTheme2"]{
     background: #ffa600;
     -webkit-box-shadow: inset 0px 2.1em 0px -1.6em #ffe799;
 }
 
-[name="theme3"]{
+[name="mainTheme3"]{
     background: #151515;
-    -webkit-box-shadow: inset 0px 2.1em 0px -1.6em #e8551f;
+    -webkit-box-shadow: inset 0px 2.1em 0px -1.6em #ce4a02;
 }
 
-/* custom scroll bar */
 ::-webkit-scrollbar {
     width: 20px;
 }
 
 ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px #151515FF;
+    box-shadow: inset 0 0 5px grey;
     border-radius: 10px;
 }
 

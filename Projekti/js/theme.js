@@ -10,16 +10,28 @@ function changeTheme(event) {
   console.log(this.name);
   let link = document.querySelector(".stylesheet");
   switch (this.name) {
-    case 'theme1':
-      link.setAttribute('href', "css/main1.css");
+    case 'mainTheme1':
+      link.setAttribute('href', "css/main.css");
       break;
 
-    case 'theme2':
+    case 'mainTheme2':
       link.setAttribute('href', "css/main2.css");
       break;
 
-    case 'theme3':
+    case 'mainTheme3':
       link.setAttribute('href', "css/main3.css");
+      break;
+
+    case 'infoTheme1':
+      link.setAttribute('href', "css/info.css");
+      break;
+
+    case 'infoTheme2':
+      link.setAttribute('href', "css/info2.css");
+      break;
+
+    case 'infoTheme3':
+      link.setAttribute('href', "css/info3.css");
       break;
 
     default:

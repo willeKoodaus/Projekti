@@ -115,6 +115,10 @@ li a {
     background: #FFE799FF;
 }
 
+.checkboxes {
+    padding: 0px 70px 20px 70px;
+}
+
 /* leaflet ikonit */
 .red-icon {
     background: #ff6324;
@@ -126,7 +130,7 @@ li a {
 }
 
 .green-icon {
-    background: #27ba35;
+    background: #2758ba;
     border: 5px solid rgba(255, 255, 255, 0.5);
     font-weight: bold;
     text-align: center;
@@ -150,17 +154,17 @@ li a {
 
 }
 
-[name="theme1"]{
+[name="mainTheme1"]{
     background: #004938;
     -webkit-box-shadow: inset 0px 2.1em 0px -1.6em #00d0d0;
 }
 
-[name="theme2"]{
+[name="mainTheme2"]{
     background: #ffa600;
     -webkit-box-shadow: inset 0px 2.1em 0px -1.6em #ffe799;
 }
 
-[name="theme3"]{
+[name="mainTheme3"]{
     background: #151515;
     -webkit-box-shadow: inset 0px 2.1em 0px -1.6em #ce4a02;
 }
