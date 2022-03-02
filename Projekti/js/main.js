@@ -18,8 +18,8 @@ let crd;
 
 //array for the markers
 let markerEvents = new Array();
-let markerSights = new Array();
 let markerActivities = new Array();
+let markerSights = new Array();
 
 //icons for the map
 const redIcon = L.divIcon({className: 'red-icon'});
@@ -70,7 +70,7 @@ function addMarker(crd, text, icon) {
 // function for fetching the events from Lipas
 function getActivities() {
   const proxy = 'https://api.allorigins.win/get?url=';
-  const search = `http://lipas.cc.jyu.fi/api/sports-places?fields=location.coordinates.tm35fin&fields=www&fields=name&fields=location.city.name&fields=location.address&typeCodes=4403&typeCodes=4404&&typeCodes=103&typeCodes=104&typeCodes=108&typeCodes=112&typeCodes=111&typeCodes=4405&typeCodes=4412&typeCodes=109&typeCodes=1130&typeCodes=4411&typeCodes=102&&typeCodes=3230&typeCodes=1110&typeCodes=3240&typeCodes=204&typeCodes=1520&typeCodes=1510&typeCodes=4402&typeCodes=3210&typeCodes=3220&typeCodes=3110&typeCodes=1130&cityCodes=91
+  const search = `http://lipas.cc.jyu.fi/api/sports-places?fields=location.coordinates.wgs84&fields=www&fields=name&fields=location.city.name&fields=location.address&typeCodes=4403&typeCodes=4404&&typeCodes=103&typeCodes=104&typeCodes=108&typeCodes=112&typeCodes=111&typeCodes=4405&typeCodes=4412&typeCodes=109&typeCodes=1130&typeCodes=4411&typeCodes=102&&typeCodes=3230&typeCodes=1110&typeCodes=3240&typeCodes=204&typeCodes=1520&typeCodes=1510&typeCodes=4402&typeCodes=3210&typeCodes=3220&typeCodes=3110&typeCodes=1130&cityCodes=91
 `;
   const url = proxy + encodeURIComponent(search);
   return fetch(url).
@@ -81,6 +81,21 @@ function getActivities() {
         console.log(JSON.parse(data.contents));
         const activities = JSON.parse(data.contents);
         return activities;
+      });
+}
+
+function getPlaces() {
+  const proxy = 'https://api.allorigins.win/get?url=';
+  const search = `https://open-api.myhelsinki.fi/v2/places/?tags_search=sights`;
+  const url = proxy + encodeURIComponent(search);
+  return fetch(url).
+      then(function(answer) {
+        return answer.json();
+      }).
+      then(function(data) {
+        console.log(JSON.parse(data.contents));
+        const places = JSON.parse(data.contents);
+        return places;
       });
 }
 
@@ -129,19 +144,15 @@ activities.addEventListener('change', function(event) {
       for (let i = 0; i < activities.length; i++) {
         const text = activities[i].name;
         const coordinates = {
-          latitude: activities[i].location.coordinates.tm35fin.lat,
-          longitude: activities[i].location.coordinates.tm35fin.lon,
+          latitude: activities[i].location.coordinates.wgs84.lat,
+          longitude: activities[i].location.coordinates.wgs84.lon,
         };
         const newMarker = addMarker(coordinates, text, greenIcon);
         newMarker.on('click', function() {
           document.querySelector(
-              '#name').innerHTML = activities.data[i].name.fi;
+              '#name').innerHTML = activities[i].name;
           document.querySelector(
-              '#address').innerHTML = activities.data[i].location.address.street_address;
-          document.querySelector(
-              '#whereWhenDuration').innerHTML = activities.data[i].event_dates.starting_day;
-          document.querySelector(
-              '#description').innerHTML = activities.data[i].description.intro;
+              '#address').innerHTML = activities[i].location.address;
           const address = `https://www.google.com/maps/dir/?api=1&origin=${crd.latitude},${crd.longitude}
         &destination=${coordinates.latitude},${coordinates.longitude}&travelmode=driving&dir_action=navigate`;
 
@@ -154,6 +165,43 @@ activities.addEventListener('change', function(event) {
   } else {
     for(let i = 0; i< markerActivities.length; i++){
       map.removeLayer(markerActivities[i]);
+    }
+  }
+});
+
+const places = document.getElementById('places');
+
+places.addEventListener('change', function(event) {
+  if (places.checked) {
+    getPlaces(crd).then(function(places) {
+      for (let i = 0; i < places.data.length; i++) {
+        const text = places.data[i].name.fi;
+        const coordinates = {
+          latitude: places.data[i].location.lat,
+          longitude: places.data[i].location.lon,
+        };
+        const newMarker = addMarker(coordinates, text, greenIcon);
+        newMarker.on('click', function() {
+          document.querySelector(
+              '#name').innerHTML = places.data[i].name.fi;
+          document.querySelector(
+              '#address').innerHTML = places.data[i].location.address.street_address;
+          document.querySelector(
+              '#whereWhenDuration').innerHTML = places.data[i].event_dates.starting_day;
+          document.querySelector(
+              '#description').innerHTML = places.data[i].description.intro;
+          const address = `https://www.google.com/maps/dir/?api=1&origin=${crd.latitude},${crd.longitude}
+        &destination=${coordinates.latitude},${coordinates.longitude}&travelmode=driving&dir_action=navigate`;
+
+          document.querySelector('#navigate a').href = address;
+        });
+        markerSights.push(newMarker);
+        map.addLayer(markerSights[i]);
+      }
+    })
+  } else {
+    for(let i = 0; i< markerSights.length; i++){
+      map.removeLayer(markerSights[i]);
     }
   }
 });
