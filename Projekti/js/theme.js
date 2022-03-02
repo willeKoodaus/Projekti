@@ -6,7 +6,8 @@ for (const button of arrButtons) {
   button.addEventListener('click', changeTheme);
 }
 
-function changeTheme(event) {
+/* switch between .css files based on button inputs */
+function changeTheme() {
   console.log(this.name);
   let link = document.querySelector(".stylesheet");
   switch (this.name) {
