@@ -54,8 +54,12 @@ article ul {
 main {
     width: 100%;
     background: #C5E0E6;
-    text-align: center;
+    text-align: left;
     font-family: 'Red Hat Display', sans-serif;
+}
+
+main img {
+    align-items: center;
 }
 
 body {
@@ -79,6 +83,9 @@ img {
     max-width: 100%;
     height: auto;
     border-radius: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .container {
@@ -92,9 +99,12 @@ img {
 
 .centered {
     position: absolute;
-    top: 30px;
+    top: 20px;
     left: 50%;
+    padding: 10px;
     transform: translate(-50%, -50%);
+    background-color: rgb(256,256,256,0.5);
+    width: 100%;
 }
 
 .themes {
@@ -138,7 +148,7 @@ img {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #6FAFC0;
+    background: #AC8887;
     border-radius: 10px;
 }
 
@@ -159,5 +169,10 @@ img {
 
     .container {
         font-size: 25px;
+    }
+
+    .centered {
+        top: 30px;
+        padding: 12px;
     }
 }
