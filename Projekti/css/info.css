@@ -9,7 +9,7 @@ header {
 
 }
 
-aside {
+nav {
     background: #6FAFC0;
     width: 100%;
     font-family: 'Red Hat Display', sans-serif;
@@ -21,12 +21,12 @@ aside {
 
 }
 
-aside a {
+nav a {
     text-decoration: none;
     color: black;
 }
 
-aside ul {
+nav ul {
     list-style-type: none;
     margin: 10px;
     padding: 0;
@@ -34,11 +34,11 @@ aside ul {
 
 }
 
-aside li {
+nav li {
     float: left;
 }
 
-aside li a {
+nav li a {
     display: block;
     color: black;
     text-align: center;
@@ -86,6 +86,10 @@ img {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+footer {
+    padding: 15px;
 }
 
 .container {
@@ -153,7 +157,7 @@ img {
 }
 
 @media only screen and (min-width: 700px) {
-    aside {
+    nav {
         font-size: 20px;
     }
 
