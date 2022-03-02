@@ -44,6 +44,12 @@ function error(err) {
 // location search initiated
 navigator.geolocation.getCurrentPosition(success, error, options);
 
+// function for adding a marker to the map
+function addMarker(crd, text, icon) {
+  return L.marker([crd.latitude, crd.longitude], {icon: icon}).
+      bindPopup(text);
+}
+
 // function for fetching the events from api.myhelsinki
 function getEvents() {
 
@@ -60,11 +66,6 @@ function getEvents() {
         const events = JSON.parse(data.contents);
         return events;
       });
-}
-// function for adding a marker to the map
-function addMarker(crd, text, icon) {
-  return L.marker([crd.latitude, crd.longitude], {icon: icon}).
-      bindPopup(text);
 }
 
 // function for fetching the events from Lipas
@@ -84,6 +85,8 @@ function getActivities() {
       });
 }
 
+// function for fetching the places from api.myhelsinki
+
 function getPlaces() {
   const proxy = 'https://api.allorigins.win/get?url=';
   const search = `https://open-api.myhelsinki.fi/v2/places/?tags_search=sights`;
@@ -101,6 +104,7 @@ function getPlaces() {
 
   const events = document.getElementById('events');
 
+// eventlistener for tapahtumat checkbox for filtering purposes. When checked it fills the map with getEvents function, removes the markers when unchecked.
   events.addEventListener('change', function(event) {
     if (events.checked) {
       getEvents(crd).then(function(events) {
@@ -133,11 +137,20 @@ function getPlaces() {
       for(let i = 0; i< markerEvents.length; i++){
         map.removeLayer(markerEvents[i]);
       }
+      document.querySelector(
+          '#name').innerHTML = '';
+      document.querySelector(
+          '#address').innerHTML = '';
+      document.querySelector(
+          '#whereWhenDuration').innerHTML = '';
+      document.querySelector(
+          '#description').innerHTML = '';
     }
   });
 
 const activities = document.getElementById('activities');
 
+// eventlistener for ulkoilu ja urheilu checkbox for filtering purposes. When checked it fills the map with getActivities function, removes the markers when unchecked.
 activities.addEventListener('change', function(event) {
   if (activities.checked) {
     getActivities(crd).then(function(activities) {
@@ -153,6 +166,10 @@ activities.addEventListener('change', function(event) {
               '#name').innerHTML = activities[i].name;
           document.querySelector(
               '#address').innerHTML = activities[i].location.address;
+          document.querySelector(
+              '#whereWhenDuration').innerHTML = '';
+          document.querySelector(
+              '#description').innerHTML = '';
           const address = `https://www.google.com/maps/dir/?api=1&origin=${crd.latitude},${crd.longitude}
         &destination=${coordinates.latitude},${coordinates.longitude}&travelmode=driving&dir_action=navigate`;
 
@@ -166,11 +183,20 @@ activities.addEventListener('change', function(event) {
     for(let i = 0; i< markerActivities.length; i++){
       map.removeLayer(markerActivities[i]);
     }
+    document.querySelector(
+        '#name').innerHTML = '';
+    document.querySelector(
+        '#address').innerHTML = '';
+    document.querySelector(
+        '#whereWhenDuration').innerHTML = '';
+    document.querySelector(
+        '#description').innerHTML = '';
   }
 });
 
 const places = document.getElementById('places');
 
+// eventlistener for nähtävyydet checkbox for filtering purposes. When checked it fills the map with getPlaces function, removes the markers when unchecked.
 places.addEventListener('change', function(event) {
   if (places.checked) {
     getPlaces(crd).then(function(places) {
@@ -187,9 +213,9 @@ places.addEventListener('change', function(event) {
           document.querySelector(
               '#address').innerHTML = places.data[i].location.address.street_address;
           document.querySelector(
-              '#whereWhenDuration').innerHTML = places.data[i].event_dates.starting_day;
+              '#whereWhenDuration').innerHTML = '';
           document.querySelector(
-              '#description').innerHTML = places.data[i].description.intro;
+              '#description').innerHTML = '';
           const address = `https://www.google.com/maps/dir/?api=1&origin=${crd.latitude},${crd.longitude}
         &destination=${coordinates.latitude},${coordinates.longitude}&travelmode=driving&dir_action=navigate`;
 
@@ -203,6 +229,14 @@ places.addEventListener('change', function(event) {
     for(let i = 0; i< markerSights.length; i++){
       map.removeLayer(markerSights[i]);
     }
+    document.querySelector(
+        '#name').innerHTML = '';
+    document.querySelector(
+        '#address').innerHTML = '';
+    document.querySelector(
+        '#whereWhenDuration').innerHTML = '';
+    document.querySelector(
+        '#description').innerHTML = '';
   }
 });
 
