@@ -32,7 +32,7 @@ article {
     justify-content: space-between;
 }
 
-aside {
+nav {
     background: #6FAFC0;
     width: 100%;
     font-family: 'Red Hat Display', sans-serif;
@@ -44,7 +44,7 @@ aside {
 
 }
 
-aside a {
+nav a {
     text-decoration: none;
     color: black;
 }
@@ -68,6 +68,10 @@ li a {
     padding: 0px 30px 0px 30px;
     text-decoration: none;
     font-weight: bold;
+}
+
+footer {
+    padding: 15px;
 }
 
 #map {
@@ -184,7 +188,7 @@ li a {
 }
 
 @media only screen and (min-width: 600px) {
-    aside {
+    nav {
         font-size: 20px;
     }
 
