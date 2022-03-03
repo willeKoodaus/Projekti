@@ -1,0 +1,166 @@
+header {
+    background: #093A3E;
+    width: 100%;
+    text-align: center;
+    font-family: 'Red Hat Display', sans-serif;
+    color: white;
+    padding: 20px;
+    font-size: 20px;
+
+}
+
+nav {
+    background: #6FAFC0;
+    width: 100%;
+    font-family: 'Red Hat Display', sans-serif;
+    color: white;
+    line-height: 200%;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+
+}
+
+nav a {
+    text-decoration: none;
+    color: black;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 10px;
+    padding: 0;
+    overflow: hidden;
+
+}
+
+nav li {
+    float: left;
+}
+
+nav li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 0 30px 0 30px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+article ul {
+    list-style-position: inside;
+}
+
+main {
+    width: 100%;
+    background: #C5E0E6;
+    text-align: left;
+    font-family: 'Red Hat Display', sans-serif;
+}
+
+main img {
+    align-items: center;
+}
+
+body {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    line-height: 1.5;
+}
+
+article {
+    margin: 70px;
+    padding: 10px 40px 10px 40px;
+    background-color: rgba(256, 256, 256, 0.7);
+    border-style: dashed;
+    overflow-y: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+footer {
+    width: 100%;
+    background-color: #6FAFC0;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Red Hat Display', sans-serif;
+}
+
+footer a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+#themes {
+    display: flex;
+    padding: 0;
+}
+
+.switch {
+    display: inline-block;
+    width: 1.35em;
+    height: 1.35em;
+    margin: 0.1em;
+    border-radius: 50%;
+
+}
+
+[name="mainTheme1"]{
+    background: #004938;
+    -webkit-box-shadow: inset 0px 2.1em 0px -1.6em #00d0d0;
+}
+
+[name="mainTheme2"]{
+    background: #ffa600;
+    -webkit-box-shadow: inset 0px 2.1em 0px -1.6em #ffe799;
+}
+
+[name="mainTheme3"]{
+    background: #151515;
+    -webkit-box-shadow: inset 0px 2.1em 0px -1.6em #ce4a02;
+}
+
+::-webkit-scrollbar {
+    width: 20px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #AC8887;
+    border-radius: 10px;
+}
+
+@media only screen and (min-width: 600px) {
+    nav {
+        font-size: 20px;
+    }
+
+    li a {
+        padding: 0px 60px 0px 60px;
+    }
+
+    article {
+        min-height: 566px;
+        max-height: 566px;
+        padding: 10px 140px 10px 140px;
+    }
+
+}
