@@ -15,6 +15,7 @@ const options = {
 
 //coordinates
 let crd;
+let destination;
 
 //array for the markers
 let markerEvents = new Array();
@@ -216,10 +217,7 @@ places.addEventListener('change', function(event) {
               '#whereWhenDuration').innerHTML = '';
           document.querySelector(
               '#description').innerHTML = '';
-          const address = `https://www.google.com/maps/dir/?api=1&origin=${crd.latitude},${crd.longitude}
-        &destination=${coordinates.latitude},${coordinates.longitude}&travelmode=driving&dir_action=navigate`;
-
-          document.querySelector('#navigate a').href = address;
+          destination = coordinates;
         });
         markerSights.push(newMarker);
         map.addLayer(markerSights[i]);
@@ -239,6 +237,81 @@ places.addEventListener('change', function(event) {
         '#description').innerHTML = '';
   }
 });
+
+const apiOsoite = 'https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql';
+const proxy = 'https://cors-anywhere.herokuapp.com/';
+
+// haetaan reitti lähtöpisteen ja kohteen avulla
+function haeReitti(lahto, kohde) {
+  // GraphQL haku
+  const haku = `{
+  plan(
+    from: {lat: ${lahto.latitude}, lon: ${lahto.longitude}}
+    to: {lat: ${kohde.latitude}, lon: ${kohde.longitude}}
+    numItineraries: 1
+  ) {
+    itineraries {
+      legs {
+        startTime
+        endTime
+        mode
+        duration
+        distance
+        legGeometry {
+          points
+        }
+      }
+    }
+  }
+}`;
+
+  const fetchOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({query: haku}), // GraphQL haku lisätään queryyn
+  };
+
+  // lähetetään haku
+  fetch(apiOsoite, fetchOptions).then(function (vastaus) {
+    return vastaus.json();
+  }).then(function (tulos) {
+    console.log(tulos.data.plan.itineraries[0].legs);
+    const googleKoodattuReitti = tulos.data.plan.itineraries[0].legs;
+    for (let i = 0; i < googleKoodattuReitti.length; i++) {
+      let color = '';
+      switch (googleKoodattuReitti[i].mode) {
+        case 'WALK':
+          color = 'green';
+          break;
+        case 'BUS':
+          color = 'red';
+          break;
+        case 'RAIL':
+          color = 'cyan'
+          break;
+        case 'TRAM':
+          color = 'magenta'
+          break;
+        default:
+          color = 'blue';
+          break;
+      }
+      const reitti = (googleKoodattuReitti[i].legGeometry.points);
+      const pisteObjektit = L.Polyline.fromEncoded(reitti).getLatLngs(); // fromEncoded: muutetaan Googlekoodaus Leafletin Polylineksi
+      L.polyline(pisteObjektit).setStyle({
+        color
+      }).addTo(map);
+    }
+    map.fitBounds([[lahto.latitude, lahto.longitude], [kohde.latitude, kohde.longitude]]);
+  }).catch(function (e) {
+    console.error(e.message);
+  });
+}
+document.querySelector('#nav').addEventListener('click',haeReitti({latitude: crd.latitude, longitude: crd.longitude}, {latitude: destination.latitude, longitude: destination.longitude}));
+// käynnistetään reitin haku lähtöpisteestä kohteeseen
+//haeReitti({latitude: 60.24, longitude: 24.74}, {latitude: 60.16, longitude: 24.92})
 
 
 
