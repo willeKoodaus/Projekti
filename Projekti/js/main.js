@@ -15,7 +15,10 @@ const options = {
 
 //coordinates
 let crd;
-let destination;
+let destinationLat;
+let destinationLon;
+
+let kesto;
 
 //array for the markers
 let markerEvents = new Array();
@@ -217,11 +220,17 @@ places.addEventListener('change', function(event) {
               '#whereWhenDuration').innerHTML = '';
           document.querySelector(
               '#description').innerHTML = '';
-          destination = coordinates;
+          destinationLat = coordinates.latitude;
+          destinationLon = coordinates.longitude;
+
+
         });
         markerSights.push(newMarker);
         map.addLayer(markerSights[i]);
       }
+      document.getElementById("nav").addEventListener('click', function(event){
+        haeReitti({latitude: crd.latitude, longitude: crd.longitude}, {latitude: destinationLat, longitude: destinationLon});
+      });
     })
   } else {
     for(let i = 0; i< markerSights.length; i++){
@@ -265,6 +274,8 @@ function haeReitti(lahto, kohde) {
   }
 }`;
 
+
+
   const fetchOptions = {
     method: 'POST',
     headers: {
@@ -279,6 +290,7 @@ function haeReitti(lahto, kohde) {
   }).then(function (tulos) {
     console.log(tulos.data.plan.itineraries[0].legs);
     const googleKoodattuReitti = tulos.data.plan.itineraries[0].legs;
+
     for (let i = 0; i < googleKoodattuReitti.length; i++) {
       let color = '';
       switch (googleKoodattuReitti[i].mode) {
@@ -297,22 +309,23 @@ function haeReitti(lahto, kohde) {
         default:
           color = 'blue';
           break;
+
+
+
       }
       const reitti = (googleKoodattuReitti[i].legGeometry.points);
       const pisteObjektit = L.Polyline.fromEncoded(reitti).getLatLngs(); // fromEncoded: muutetaan Googlekoodaus Leafletin Polylineksi
       L.polyline(pisteObjektit).setStyle({
         color
       }).addTo(map);
+
+      let kesto = googleKoodattuReitti[i].duration;
+      document.getElementById('tulosta').innerHTML += `<p>
+${kesto} </p>`;
+
     }
     map.fitBounds([[lahto.latitude, lahto.longitude], [kohde.latitude, kohde.longitude]]);
   }).catch(function (e) {
     console.error(e.message);
   });
 }
-document.querySelector('#nav').addEventListener('click',haeReitti({latitude: crd.latitude, longitude: crd.longitude}, {latitude: destination.latitude, longitude: destination.longitude}));
-// käynnistetään reitin haku lähtöpisteestä kohteeseen
-//haeReitti({latitude: 60.24, longitude: 24.74}, {latitude: 60.16, longitude: 24.92})
-
-
-
-
