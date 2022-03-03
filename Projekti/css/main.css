@@ -142,11 +142,25 @@ footer {
     line-height: 30px;
 }
 
-.themes {
+footer {
     width: 100%;
-    background-color: #C5E0E6FF;
+    background-color: #6FAFC0;
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+footer a {
+    text-decoration: none;
+    color: black;
+    font-family: 'Red Hat Display', sans-serif;
+    font-weight: bold;
+}
+
+#themes {
+    display: flex;
+    padding: 0;
 }
 
 .switch {

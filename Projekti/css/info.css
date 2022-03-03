@@ -88,19 +88,6 @@ img {
     margin-right: auto;
 }
 
-footer {
-    padding: 15px;
-}
-
-.container {
-    position: relative;
-    text-align: center;
-    color: black;
-    font-family: 'Red Hat Display', sans-serif;
-    font-weight: bold;
-    font-size: 15px;
-}
-
 .centered {
     position: absolute;
     top: 30px;
@@ -112,11 +99,35 @@ footer {
 
 }
 
-.themes {
+.container {
+    position: relative;
+    text-align: center;
+    color: black;
+    font-family: 'Red Hat Display', sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+footer {
     width: 100%;
-    background-color: #C5E0E6FF;
+    background-color: #6FAFC0;
+    padding: 15px;
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Red Hat Display', sans-serif;
+}
+
+footer a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+#themes {
+    display: flex;
+    padding: 0;
 }
 
 .switch {
@@ -128,17 +139,17 @@ footer {
 
 }
 
-[name="infoTheme1"]{
+[name="mainTheme1"]{
     background: #004938;
     -webkit-box-shadow: inset 0px 2.1em 0px -1.6em #00d0d0;
 }
 
-[name="infoTheme2"]{
+[name="mainTheme2"]{
     background: #ffa600;
     -webkit-box-shadow: inset 0px 2.1em 0px -1.6em #ffe799;
 }
 
-[name="infoTheme3"]{
+[name="mainTheme3"]{
     background: #151515;
     -webkit-box-shadow: inset 0px 2.1em 0px -1.6em #ce4a02;
 }
@@ -167,8 +178,8 @@ footer {
     }
 
     article {
-        min-height: 550px;
-        max-height: 550px;
+        min-height: 566px;
+        max-height: 566px;
         padding: 10px 140px 10px 140px;
     }
 
