@@ -104,6 +104,15 @@ footer {
     border-radius: 15px;
 }
 
+#nav {
+    font-family: 'Red Hat Display', sans-serif;
+    background:#093A3E;
+    color: white;
+    border-radius: 20px;
+    font-size: 15px;
+    padding: 10px;
+}
+
 #address, #whereWhenDuration, #description {
     width: 100%;
     margin: 0.3rem 0;
@@ -121,6 +130,8 @@ footer {
 
 .checkboxes {
     padding: 0px 70px 20px 70px;
+    font-family: 'Red Hat Display', sans-serif;
+    font-size: 15px;
 }
 
 /* leaflet ikonit */
@@ -149,6 +160,7 @@ footer {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    font-family: 'Red Hat Display', sans-serif;
 }
 
 footer a {
@@ -170,6 +182,7 @@ footer a {
     overflow-y: auto;
     max-height: 200px;
     overflow-x: hidden;
+    font-family: 'Red Hat Display', sans-serif;
 }
 
 .hidden {
@@ -223,12 +236,17 @@ footer a {
 }
 
 @media only screen and (min-width: 600px) {
-    nav {
+    #nav {
         font-size: 20px;
+        padding: 10px;
     }
 
     li a {
         padding: 0px 60px 0px 60px;
+    }
+
+    .checkboxes {
+        font-size: 18px;
     }
 
 }
