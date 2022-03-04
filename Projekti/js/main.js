@@ -247,6 +247,7 @@ places.addEventListener('change', function(event) {
 
 const apiOsoite = 'https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql';
 const proxy = 'https://cors-anywhere.herokuapp.com/';
+let polylineGroup = L.layerGroup();
 
 // haetaan reitti lähtöpisteen ja kohteen avulla
 function haeReitti(lahto, kohde) {
@@ -264,6 +265,10 @@ function haeReitti(lahto, kohde) {
         mode
         duration
         distance
+        trip {
+          tripHeadsign
+          routeShortName
+        }
         legGeometry {
           points
         }
@@ -271,8 +276,6 @@ function haeReitti(lahto, kohde) {
     }
   }
 }`;
-
-
 
   const fetchOptions = {
     method: 'POST',
@@ -322,10 +325,14 @@ function haeReitti(lahto, kohde) {
 
       }
       const reitti = (googleKoodattuReitti[i].legGeometry.points);
-      const pisteObjektit = L.Polyline.fromEncoded(reitti).getLatLngs(); // fromEncoded: muutetaan Googlekoodaus Leafletin Polylineksi
-      L.polyline(pisteObjektit).setStyle({
+      if(polylineGroup>0){
+        map.remove(polylineGroup);
+      }
+      const polyline = L.Polyline.fromEncoded(reitti).getLatLngs(); // fromEncoded: muutetaan Googlekoodaus Leafletin Polylineksi
+      polylineGroup.addLayer(L.polyline(polyline).setStyle({
         color
-      }).addTo(map);
+      }))
+      polylineGroup.addTo(map);
       wholeDistance += googleKoodattuReitti[i].distance / 1000;
       wholeDuration += googleKoodattuReitti[i].duration / 60;
       let distance = (googleKoodattuReitti[i].distance / 1000).toFixed(2);
