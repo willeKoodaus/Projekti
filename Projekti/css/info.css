@@ -71,6 +71,7 @@ body {
 
 article {
     margin: 70px;
+    width: 200px;
     padding: 10px 40px 10px 40px;
     background-color: rgba(256, 256, 256, 0.7);
     border-style: dashed;

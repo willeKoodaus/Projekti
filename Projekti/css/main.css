@@ -163,6 +163,27 @@ footer a {
     padding: 0;
 }
 
+#print{
+    padding: 10px 40px 10px 40px;
+    background-color: rgba(256, 256, 256, 0.7);
+    border-style: dashed;
+    overflow-y: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+}
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
+}
+
+#print p {
+    line-height: 0.5;
+}
+
 .switch {
     display: inline-block;
     width: 1.35em;

@@ -18,8 +18,6 @@ let crd;
 let destinationLat;
 let destinationLon;
 
-let kesto;
-
 //array for the markers
 let markerEvents = new Array();
 let markerActivities = new Array();
@@ -290,21 +288,31 @@ function haeReitti(lahto, kohde) {
   }).then(function (tulos) {
     console.log(tulos.data.plan.itineraries[0].legs);
     const googleKoodattuReitti = tulos.data.plan.itineraries[0].legs;
+    let wholeDistance = 0;
+    let wholeDuration = 0;
+    document.getElementById('print').classList.replace('hidden', 'visible');
+    document.getElementById('print').innerHTML = '<h3>Reittiohjeet</h3>';
+
 
     for (let i = 0; i < googleKoodattuReitti.length; i++) {
       let color = '';
+      let mode;
       switch (googleKoodattuReitti[i].mode) {
         case 'WALK':
           color = 'green';
+          mode = "Kävely";
           break;
         case 'BUS':
           color = 'red';
+          mode = "Bussi";
           break;
         case 'RAIL':
-          color = 'cyan'
+          color = 'cyan';
+          mode = "Juna";
           break;
         case 'TRAM':
-          color = 'magenta'
+          color = 'magenta';
+          mode = "Ratikka";
           break;
         default:
           color = 'blue';
@@ -318,12 +326,18 @@ function haeReitti(lahto, kohde) {
       L.polyline(pisteObjektit).setStyle({
         color
       }).addTo(map);
-
-      let kesto = googleKoodattuReitti[i].duration;
-      document.getElementById('tulosta').innerHTML += `<p>
-${kesto} </p>`;
+      wholeDistance += googleKoodattuReitti[i].distance / 1000;
+      wholeDuration += googleKoodattuReitti[i].duration / 60;
+      let distance = (googleKoodattuReitti[i].distance / 1000).toFixed(2);
+      let kesto = Math.round(+googleKoodattuReitti[i].duration / 60);
+          document.getElementById('print').innerHTML += `<h4>Vaihe ${i+1}:</h4><p>
+${mode}</p>`;
+      document.getElementById('print').innerHTML += `<p>${kesto} minuuttia</p>`
+      document.getElementById('print').innerHTML += `<p>${distance} km</p>`
 
     }
+    document.getElementById('print').innerHTML += `<br><p><strong>Matkan pituus yhteensä:</strong> ${(wholeDistance).toFixed(2)} km `
+    document.getElementById('print').innerHTML += `<p><strong>Matkan kesto yhteensä:</strong> ${Math.round(wholeDuration)} minuuttia</p>`
     map.fitBounds([[lahto.latitude, lahto.longitude], [kohde.latitude, kohde.longitude]]);
   }).catch(function (e) {
     console.error(e.message);
