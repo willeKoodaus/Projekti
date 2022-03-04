@@ -241,6 +241,10 @@ footer a {
         padding: 10px;
     }
 
+    nav {
+        font-size: 20px;
+    }
+
     li a {
         padding: 0px 60px 0px 60px;
     }
