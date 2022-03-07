@@ -32,11 +32,10 @@ function success(pos) {
   crd = pos.coords;
   map.setView([crd.latitude, crd.longitude], 12);
 
-  const ownLocation = addMarker(crd, 'I am here', redIcon);
+  const ownLocation = addMarker(crd, 'Olet tässä', redIcon);
   map.addLayer(ownLocation);
   ownLocation.openPopup();
 }
-
 
 // function for errors if location search failed
 function error(err) {
@@ -55,7 +54,7 @@ function addMarker(crd, text, icon) {
 // function for fetching the events from api.myhelsinki
 function getEvents() {
 
-  const tags = `Culture and leisure%2CStudents%2CExhibitions%2CConcerts and clubs%2CEnvironment and nature`
+  const tags = `Culture and leisure%2CStudents%2CExhibitions%2CConcerts and clubs%2CEnvironment and nature`;
   const proxy = 'https://api.allorigins.win/get?url=';
   const search = `https://open-api.myhelsinki.fi/v1/events/?tags_search=${tags}`;
   const url = proxy + encodeURIComponent(search);
@@ -104,51 +103,63 @@ function getPlaces() {
       });
 }
 
-  const events = document.getElementById('events');
+const events = document.getElementById('events');
 
 // eventlistener for tapahtumat checkbox for filtering purposes. When checked it fills the map with getEvents function, removes the markers when unchecked.
-  events.addEventListener('change', function(event) {
-    if (events.checked) {
-      getEvents(crd).then(function(events) {
-        for (let i = 0; i < events.data.length; i++) {
-          const text = events.data[i].name.fi;
-          const coordinates = {
-            latitude: events.data[i].location.lat,
-            longitude: events.data[i].location.lon,
-          };
-          const newMarker = addMarker(coordinates, text, greenIcon);
-          newMarker.on('click', function() {
-            document.querySelector(
-                '#name').innerHTML = events.data[i].name.fi;
-            document.querySelector(
-                '#address').innerHTML = events.data[i].location.address.street_address;
-            document.querySelector(
-                '#whereWhenDuration').innerHTML = events.data[i].event_dates.starting_day;
-            document.querySelector(
-                '#description').innerHTML = events.data[i].description.intro;
-            const address = `https://www.google.com/maps/dir/?api=1&origin=${crd.latitude},${crd.longitude}
-        &destination=${coordinates.latitude},${coordinates.longitude}&travelmode=driving&dir_action=navigate`;
+events.addEventListener('change', function(event) {
+  if (events.checked) {
+    getEvents(crd).then(function(events) {
+      for (let i = 0; i < events.data.length; i++) {
+        const text = events.data[i].name.fi;
+        const coordinates = {
+          latitude: events.data[i].location.lat,
+          longitude: events.data[i].location.lon,
+        };
+        const newMarker = addMarker(coordinates, text, greenIcon);
+        newMarker.on('click', function() {
 
-            document.querySelector('#navigate a').href = address;
-          });
-          markerEvents.push(newMarker);
-          map.addLayer(markerEvents[i]);
-        }
-      })
-    } else {
-      for(let i = 0; i< markerEvents.length; i++){
-        map.removeLayer(markerEvents[i]);
+         const startDay = events.data[i].event_dates.starting_day.slice(8,10);
+         const startMonth = events.data[i].event_dates.starting_day.slice(5,7);
+         const startYear = events.data[i].event_dates.starting_day.slice(0,4);
+         const eventStartTime = events.data[i].event_dates.starting_day.slice(11,16);
+         const endDay = events.data[i].event_dates.ending_day.slice(8,10);
+         const endMonth = events.data[i].event_dates.starting_day.slice(5,7);
+         const endYear = events.data[i].event_dates.starting_day.slice(0,4);
+         const eventEndTime = events.data[i].event_dates.ending_day.slice(11,16)
+          document.querySelector(
+              '#name').innerHTML = events.data[i].name.fi;
+          document.querySelector(
+              '#address').innerHTML = events.data[i].location.address.street_address;
+          document.querySelector(
+              '#whereWhenDuration').innerHTML = `<strong>Alkaa:</strong> ${startDay}.${startMonth}.${startYear} klo ${eventStartTime}<br><strong>Päättyy:</strong> ${endDay}.${endMonth}.${endYear} klo ${eventEndTime}`;
+          document.querySelector(
+              '#description').innerHTML = events.data[i].description.intro;
+          destinationLat = coordinates.latitude;
+          destinationLon = coordinates.longitude;
+
+        });
+        markerEvents.push(newMarker);
+        map.addLayer(markerEvents[i]);
       }
-      document.querySelector(
-          '#name').innerHTML = '';
-      document.querySelector(
-          '#address').innerHTML = '';
-      document.querySelector(
-          '#whereWhenDuration').innerHTML = '';
-      document.querySelector(
-          '#description').innerHTML = '';
+      document.getElementById('nav').addEventListener('click', function(event) {
+        getRoute({latitude: crd.latitude, longitude: crd.longitude},
+            {latitude: destinationLat, longitude: destinationLon});
+      });
+    });
+  } else {
+    for (let i = 0; i < markerEvents.length; i++) {
+      map.removeLayer(markerEvents[i]);
     }
-  });
+    document.querySelector(
+        '#name').innerHTML = '';
+    document.querySelector(
+        '#address').innerHTML = '';
+    document.querySelector(
+        '#whereWhenDuration').innerHTML = '';
+    document.querySelector(
+        '#description').innerHTML = '';
+  }
+});
 
 const activities = document.getElementById('activities');
 
@@ -164,25 +175,29 @@ activities.addEventListener('change', function(event) {
         };
         const newMarker = addMarker(coordinates, text, greenIcon);
         newMarker.on('click', function() {
+          document.getElementById('print').classList.replace('visible', 'hidden');
           document.querySelector(
               '#name').innerHTML = activities[i].name;
           document.querySelector(
               '#address').innerHTML = activities[i].location.address;
           document.querySelector(
-              '#whereWhenDuration').innerHTML = '';
+             '#website').innerHTML = `<a href="${activities[i].www}" target="_blank">Lisätietoja</a>`;
           document.querySelector(
               '#description').innerHTML = '';
-          const address = `https://www.google.com/maps/dir/?api=1&origin=${crd.latitude},${crd.longitude}
-        &destination=${coordinates.latitude},${coordinates.longitude}&travelmode=driving&dir_action=navigate`;
+          destinationLat = coordinates.latitude;
+          destinationLon = coordinates.longitude;
 
-          document.querySelector('#navigate a').href = address;
         });
         markerActivities.push(newMarker);
         map.addLayer(markerActivities[i]);
       }
-    })
+      document.getElementById('nav').addEventListener('click', function(event) {
+        getRoute({latitude: crd.latitude, longitude: crd.longitude},
+            {latitude: destinationLat, longitude: destinationLon});
+      });
+    });
   } else {
-    for(let i = 0; i< markerActivities.length; i++){
+    for (let i = 0; i < markerActivities.length; i++) {
       map.removeLayer(markerActivities[i]);
     }
     document.querySelector(
@@ -190,7 +205,7 @@ activities.addEventListener('change', function(event) {
     document.querySelector(
         '#address').innerHTML = '';
     document.querySelector(
-        '#whereWhenDuration').innerHTML = '';
+        '#website').innerHTML = '';
     document.querySelector(
         '#description').innerHTML = '';
   }
@@ -214,24 +229,30 @@ places.addEventListener('change', function(event) {
               '#name').innerHTML = places.data[i].name.fi;
           document.querySelector(
               '#address').innerHTML = places.data[i].location.address.street_address;
+          if (places.data[i].info_url.length > 0){
           document.querySelector(
-              '#whereWhenDuration').innerHTML = '';
+              '#website').innerHTML = `<a href="${places.data[i].info_url}" target="_blank">Lisätietoja</a>`;
+          }
+          else {
+            document.querySelector(
+                '#website').innerHTML = '';
+          }
           document.querySelector(
-              '#description').innerHTML = '';
+              '#description').innerHTML = places.data[i].description.intro;
           destinationLat = coordinates.latitude;
           destinationLon = coordinates.longitude;
-
 
         });
         markerSights.push(newMarker);
         map.addLayer(markerSights[i]);
       }
-      document.getElementById("nav").addEventListener('click', function(event){
-        getRoute({latitude: crd.latitude, longitude: crd.longitude}, {latitude: destinationLat, longitude: destinationLon});
+      document.getElementById('nav').addEventListener('click', function(event) {
+        getRoute({latitude: crd.latitude, longitude: crd.longitude},
+            {latitude: destinationLat, longitude: destinationLon});
       });
-    })
+    });
   } else {
-    for(let i = 0; i< markerSights.length; i++){
+    for (let i = 0; i < markerSights.length; i++) {
       map.removeLayer(markerSights[i]);
     }
     document.querySelector(
@@ -239,7 +260,7 @@ places.addEventListener('change', function(event) {
     document.querySelector(
         '#address').innerHTML = '';
     document.querySelector(
-        '#whereWhenDuration').innerHTML = '';
+        '#website').innerHTML = '';
     document.querySelector(
         '#description').innerHTML = '';
   }
@@ -287,9 +308,9 @@ function getRoute(start, destination) {
   };
 
   // the query is sent with fetch.
-  fetch(apiAddress, fetchOptions).then(function (answer) {
+  fetch(apiAddress, fetchOptions).then(function(answer) {
     return answer.json();
-  }).then(function (result) {
+  }).then(function(result) {
     console.log(result.data.plan.itineraries[0].legs);
     const googleFormattedRoute = result.data.plan.itineraries[0].legs;
     let wholeDistance = 0;
@@ -297,55 +318,74 @@ function getRoute(start, destination) {
     document.getElementById('print').classList.replace('hidden', 'visible');
     document.getElementById('print').innerHTML = '<h3>Reittiohjeet</h3>';
 
-
     for (let i = 0; i < googleFormattedRoute.length; i++) {
       let color = '';
       let mode;
       switch (googleFormattedRoute[i].mode) {
         case 'WALK':
-          color = 'green';
-          mode = "Kävely";
+          color = '#093A3E';
+          mode = 'Kävele';
           break;
         case 'BUS':
-          color = 'red';
-          mode = "Bussi";
+          color = '#B24C63';
+          mode = `Ota bussi <strong>${googleFormattedRoute[i].trip.routeShortName}</strong> (${googleFormattedRoute[i].trip.tripHeadsign}), matkan kesto`;
           break;
         case 'RAIL':
-          color = 'cyan';
-          mode = "Juna";
+          color = '#357DED';
+          mode = `Ota juna <strong>${googleFormattedRoute[i].trip.routeShortName}</strong> (${googleFormattedRoute[i].trip.tripHeadsign}), matkan kesto`;
           break;
         case 'TRAM':
-          color = 'magenta';
-          mode = "Ratikka";
+          color = '#069E2D';
+          mode = `Ota ratikka <strong>${googleFormattedRoute[i].trip.routeShortName}</strong> (${googleFormattedRoute[i].trip.tripHeadsign}), matkan kesto`;
           break;
+        case 'SUBWAY':
+          color = '#FDCA40';
+          mode = `Ota metro <strong>${googleFormattedRoute[i].trip.routeShortName}</strong> (${googleFormattedRoute[i].trip.tripHeadsign}), matkan kesto`;
         default:
-          color = 'blue';
+          color = '#44CFCB';
           break;
-
-
 
       }
       const route = (googleFormattedRoute[i].legGeometry.points);
 
       const polyline = L.Polyline.fromEncoded(route).getLatLngs(); // fromEncoded: Google format is transformed in to leaflet polyline.
       polylineGroup.addLayer(L.polyline(polyline).setStyle({
-        color
-      }))
+        color,
+      }));
       polylineGroup.addTo(map);
+
+      const unixTimeStart = googleFormattedRoute[i].startTime;
+      const startDate = new Date(unixTimeStart);
+      const startTime = startDate.toLocaleTimeString(navigator.language,
+          {hour: '2-digit', minute: '2-digit'});
+
+      const unixTimeEnd = googleFormattedRoute[i].endTime;
+      const endDate = new Date(unixTimeEnd);
+      const endTime = endDate.toLocaleTimeString(navigator.language,
+          {hour: '2-digit', minute: '2-digit'});
+
       wholeDistance += googleFormattedRoute[i].distance / 1000;
       wholeDuration += googleFormattedRoute[i].duration / 60;
-      let distance = (googleFormattedRoute[i].distance / 1000).toFixed(2);
-      let duration = Math.round(+googleFormattedRoute[i].duration / 60);
-          document.getElementById('print').innerHTML += `<h4>Vaihe ${i+1}:</h4><p>
-${mode}</p>`;
-      document.getElementById('print').innerHTML += `<p>${duration} minuuttia</p>`
-      document.getElementById('print').innerHTML += `<p>${distance} km</p>`
+      const distance = (googleFormattedRoute[i].distance / 1000).toFixed(2);
+      const duration = Math.round(+googleFormattedRoute[i].duration / 60);
 
+      document.getElementById(
+          'print').innerHTML += `<h4>Klo ${startTime}—${endTime}:</h4><p>
+${mode} ${duration} minuuttia (${distance} km)</p>`;
     }
-    document.getElementById('print').innerHTML += `<br><p><strong>Matkan pituus yhteensä:</strong> ${(wholeDistance).toFixed(2)} km `
-    document.getElementById('print').innerHTML += `<p><strong>Matkan kesto yhteensä:</strong> ${Math.round(wholeDuration)} minuuttia</p>`
-    map.fitBounds([[start.latitude, start.longitude], [destination.latitude, destination.longitude]]);
-  }).catch(function (e) {
+    document.getElementById(
+        'print').innerHTML += `<br><p><strong>Matkan pituus yhteensä:</strong> ${(wholeDistance).toFixed(
+        2)} km `;
+    document.getElementById(
+        'print').innerHTML += `<p><strong>Matkan kesto yhteensä:</strong> ${Math.round(
+        wholeDuration)} minuuttia</p>`;
+    map.fitBounds([
+      [start.latitude, start.longitude],
+      [destination.latitude, destination.longitude]]);
+  }).catch(function(e) {
     console.error(e.message);
+    document.getElementById('print').classList.replace('hidden', 'visible');
+    document.getElementById(
+        'print').innerHTML += '<p>Reittiohjeita tähän kohteeseen ei ole saatavilla.</p>';
   });
 }
