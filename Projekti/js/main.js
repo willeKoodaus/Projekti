@@ -227,7 +227,7 @@ places.addEventListener('change', function(event) {
         map.addLayer(markerSights[i]);
       }
       document.getElementById("nav").addEventListener('click', function(event){
-        haeReitti({latitude: crd.latitude, longitude: crd.longitude}, {latitude: destinationLat, longitude: destinationLon});
+        getRoute({latitude: crd.latitude, longitude: crd.longitude}, {latitude: destinationLat, longitude: destinationLon});
       });
     })
   } else {
@@ -245,17 +245,17 @@ places.addEventListener('change', function(event) {
   }
 });
 
-const apiOsoite = 'https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql';
+const apiAddress = 'https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql';
 const proxy = 'https://cors-anywhere.herokuapp.com/';
 let polylineGroup = L.layerGroup();
 
-// haetaan reitti lähtöpisteen ja kohteen avulla
-function haeReitti(lahto, kohde) {
-  // GraphQL haku
-  const haku = `{
+// get the route info with the start and destination coordinates
+function getRoute(start, destination) {
+  // GraphQL search
+  const search = `{
   plan(
-    from: {lat: ${lahto.latitude}, lon: ${lahto.longitude}}
-    to: {lat: ${kohde.latitude}, lon: ${kohde.longitude}}
+    from: {lat: ${start.latitude}, lon: ${start.longitude}}
+    to: {lat: ${destination.latitude}, lon: ${destination.longitude}}
     numItineraries: 1
   ) {
     itineraries {
@@ -282,25 +282,25 @@ function haeReitti(lahto, kohde) {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({query: haku}), // GraphQL haku lisätään queryyn
+    body: JSON.stringify({query: search}), // GraphQL search is added to query
   };
 
-  // lähetetään haku
-  fetch(apiOsoite, fetchOptions).then(function (vastaus) {
-    return vastaus.json();
-  }).then(function (tulos) {
-    console.log(tulos.data.plan.itineraries[0].legs);
-    const googleKoodattuReitti = tulos.data.plan.itineraries[0].legs;
+  // the query is sent with fetch.
+  fetch(apiAddress, fetchOptions).then(function (answer) {
+    return answer.json();
+  }).then(function (result) {
+    console.log(result.data.plan.itineraries[0].legs);
+    const googleFormattedRoute = result.data.plan.itineraries[0].legs;
     let wholeDistance = 0;
     let wholeDuration = 0;
     document.getElementById('print').classList.replace('hidden', 'visible');
     document.getElementById('print').innerHTML = '<h3>Reittiohjeet</h3>';
 
 
-    for (let i = 0; i < googleKoodattuReitti.length; i++) {
+    for (let i = 0; i < googleFormattedRoute.length; i++) {
       let color = '';
       let mode;
-      switch (googleKoodattuReitti[i].mode) {
+      switch (googleFormattedRoute[i].mode) {
         case 'WALK':
           color = 'green';
           mode = "Kävely";
@@ -324,28 +324,28 @@ function haeReitti(lahto, kohde) {
 
 
       }
-      const reitti = (googleKoodattuReitti[i].legGeometry.points);
+      const route = (googleFormattedRoute[i].legGeometry.points);
       if(polylineGroup>0){
         map.remove(polylineGroup);
       }
-      const polyline = L.Polyline.fromEncoded(reitti).getLatLngs(); // fromEncoded: muutetaan Googlekoodaus Leafletin Polylineksi
+      const polyline = L.Polyline.fromEncoded(route).getLatLngs(); // fromEncoded: Google format is transformed in to leaflet polyline.
       polylineGroup.addLayer(L.polyline(polyline).setStyle({
         color
       }))
       polylineGroup.addTo(map);
-      wholeDistance += googleKoodattuReitti[i].distance / 1000;
-      wholeDuration += googleKoodattuReitti[i].duration / 60;
-      let distance = (googleKoodattuReitti[i].distance / 1000).toFixed(2);
-      let kesto = Math.round(+googleKoodattuReitti[i].duration / 60);
+      wholeDistance += googleFormattedRoute[i].distance / 1000;
+      wholeDuration += googleFormattedRoute[i].duration / 60;
+      let distance = (googleFormattedRoute[i].distance / 1000).toFixed(2);
+      let duration = Math.round(+googleFormattedRoute[i].duration / 60);
           document.getElementById('print').innerHTML += `<h4>Vaihe ${i+1}:</h4><p>
 ${mode}</p>`;
-      document.getElementById('print').innerHTML += `<p>${kesto} minuuttia</p>`
+      document.getElementById('print').innerHTML += `<p>${duration} minuuttia</p>`
       document.getElementById('print').innerHTML += `<p>${distance} km</p>`
 
     }
     document.getElementById('print').innerHTML += `<br><p><strong>Matkan pituus yhteensä:</strong> ${(wholeDistance).toFixed(2)} km `
     document.getElementById('print').innerHTML += `<p><strong>Matkan kesto yhteensä:</strong> ${Math.round(wholeDuration)} minuuttia</p>`
-    map.fitBounds([[lahto.latitude, lahto.longitude], [kohde.latitude, kohde.longitude]]);
+    map.fitBounds([[start.latitude, start.longitude], [destination.latitude, destination.longitude]]);
   }).catch(function (e) {
     console.error(e.message);
   });
