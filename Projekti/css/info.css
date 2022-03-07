@@ -77,6 +77,7 @@ article {
     overflow-y: auto;
     max-height: 200px;
     overflow-x: hidden;
+    font-size: 15px;
 }
 
 img {
@@ -117,6 +118,7 @@ footer {
     align-items: center;
     flex-direction: column;
     font-family: 'Red Hat Display', sans-serif;
+    font-size: 15px;
 }
 
 footer a {
@@ -181,6 +183,7 @@ footer a {
         min-height: 566px;
         max-height: 566px;
         padding: 10px 140px 10px 140px;
+        font-size: 18px;
     }
 
     .container {
@@ -191,4 +194,10 @@ footer a {
         top: 50px;
         padding: 12px;
     }
+
+    footer {
+        font-size: 18px;
+    }
+
+
 }

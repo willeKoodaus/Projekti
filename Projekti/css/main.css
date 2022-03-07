@@ -176,6 +176,7 @@ footer {
     align-items: center;
     flex-direction: column;
     font-family: 'Red Hat Display', sans-serif;
+    font-size: 15px;
 }
 
 footer a {
@@ -271,6 +272,10 @@ footer a {
 
     li a {
         padding: 0 60px 0 60px;
+    }
+
+    footer {
+        font-size: 18px;
     }
 
     .checkboxes {
