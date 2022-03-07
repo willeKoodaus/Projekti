@@ -251,6 +251,7 @@ let polylineGroup = L.layerGroup();
 
 // get the route info with the start and destination coordinates
 function getRoute(start, destination) {
+  polylineGroup.clearLayers();
   // GraphQL search
   const search = `{
   plan(
@@ -325,9 +326,7 @@ function getRoute(start, destination) {
 
       }
       const route = (googleFormattedRoute[i].legGeometry.points);
-      if(polylineGroup>0){
-        map.remove(polylineGroup);
-      }
+
       const polyline = L.Polyline.fromEncoded(route).getLatLngs(); // fromEncoded: Google format is transformed in to leaflet polyline.
       polylineGroup.addLayer(L.polyline(polyline).setStyle({
         color
