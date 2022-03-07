@@ -117,6 +117,7 @@ footer {
     width: 100%;
     margin: 0.3rem 0;
     font-family: 'Red Hat Display', sans-serif;
+    font-size: 15px;
 }
 
 #whereWhenDuration {
@@ -288,6 +289,10 @@ footer a {
 
     #description {
         max-width: 1000px;
+    }
+
+    #address, #whereWhenDuration, #description, #website {
+        font-size: 18px;
     }
 
 }

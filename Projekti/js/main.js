@@ -117,15 +117,22 @@ events.addEventListener('change', function(event) {
         };
         const newMarker = addMarker(coordinates, text, greenIcon);
         newMarker.on('click', function() {
+          polylineGroup.clearLayers();
+          document.getElementById('print').
+              classList.
+              replace('visible', 'hidden');
 
-         const startDay = events.data[i].event_dates.starting_day.slice(8,10);
-         const startMonth = events.data[i].event_dates.starting_day.slice(5,7);
-         const startYear = events.data[i].event_dates.starting_day.slice(0,4);
-         const eventStartTime = events.data[i].event_dates.starting_day.slice(11,16);
-         const endDay = events.data[i].event_dates.ending_day.slice(8,10);
-         const endMonth = events.data[i].event_dates.starting_day.slice(5,7);
-         const endYear = events.data[i].event_dates.starting_day.slice(0,4);
-         const eventEndTime = events.data[i].event_dates.ending_day.slice(11,16)
+          const startDay = events.data[i].event_dates.starting_day.slice(8, 10);
+          const startMonth = events.data[i].event_dates.starting_day.slice(5,
+              7);
+          const startYear = events.data[i].event_dates.starting_day.slice(0, 4);
+          const eventStartTime = events.data[i].event_dates.starting_day.slice(
+              11, 16);
+          const endDay = events.data[i].event_dates.ending_day.slice(8, 10);
+          const endMonth = events.data[i].event_dates.starting_day.slice(5, 7);
+          const endYear = events.data[i].event_dates.starting_day.slice(0, 4);
+          const eventEndTime = events.data[i].event_dates.ending_day.slice(11,
+              16);
           document.querySelector(
               '#name').innerHTML = events.data[i].name.fi;
           document.querySelector(
@@ -175,13 +182,16 @@ activities.addEventListener('change', function(event) {
         };
         const newMarker = addMarker(coordinates, text, greenIcon);
         newMarker.on('click', function() {
-          document.getElementById('print').classList.replace('visible', 'hidden');
+          polylineGroup.clearLayers();
+          document.getElementById('print').
+              classList.
+              replace('visible', 'hidden');
           document.querySelector(
               '#name').innerHTML = activities[i].name;
           document.querySelector(
               '#address').innerHTML = activities[i].location.address;
           document.querySelector(
-             '#website').innerHTML = `<a href="${activities[i].www}" target="_blank">Lisätietoja</a>`;
+              '#website').innerHTML = `<a href="${activities[i].www}" target="_blank">Lisätietoja</a>`;
           document.querySelector(
               '#description').innerHTML = '';
           destinationLat = coordinates.latitude;
@@ -225,15 +235,18 @@ places.addEventListener('change', function(event) {
         };
         const newMarker = addMarker(coordinates, text, greenIcon);
         newMarker.on('click', function() {
+          polylineGroup.clearLayers();
+          document.getElementById('print').
+              classList.
+              replace('visible', 'hidden');
           document.querySelector(
               '#name').innerHTML = places.data[i].name.fi;
           document.querySelector(
               '#address').innerHTML = places.data[i].location.address.street_address;
-          if (places.data[i].info_url.length > 0){
-          document.querySelector(
-              '#website').innerHTML = `<a href="${places.data[i].info_url}" target="_blank">Lisätietoja</a>`;
-          }
-          else {
+          if (places.data[i].info_url.length > 0) {
+            document.querySelector(
+                '#website').innerHTML = `<a href="${places.data[i].info_url}" target="_blank">Lisätietoja</a>`;
+          } else {
             document.querySelector(
                 '#website').innerHTML = '';
           }
