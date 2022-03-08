@@ -26,13 +26,17 @@ let markerSights = new Array();
 //icons for the map
 const redIcon = L.divIcon({className: 'red-icon'});
 const greenIcon = L.divIcon({className: 'green-icon'});
+const userIcon = L.icon({iconUrl: 'icons/user.png', iconSize: [25,25]});
+const eventIcon = L.icon({iconUrl: 'icons/events.png', iconSize: [25,25]});;
+const sportsIcon = L.icon({iconUrl: 'icons/naturesports.png', iconSize: [25,25]});;
+const sightsIcon = L.icon({iconUrl: 'icons/sights.png', iconSize: [25,25]});;
 
 // function to be used after location has been found.
 function success(pos) {
   crd = pos.coords;
   map.setView([crd.latitude, crd.longitude], 12);
 
-  const ownLocation = addMarker(crd, 'Olet tässä', redIcon);
+  const ownLocation = addMarker(crd, 'Olet tässä', userIcon);
   map.addLayer(ownLocation);
   ownLocation.openPopup();
 }
