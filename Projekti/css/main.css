@@ -77,12 +77,13 @@ footer {
 #map {
     width: 100%;
     height: 55vh;
-    margin: 70px 70px 10px 70px;
+    margin: 0px 0px 10px 0px;
 }
 
 #name, #navigate {
     width: 50%;
     font-family: 'Red Hat Display', sans-serif;
+    font-size: large;
 }
 
 #navigate {
@@ -302,6 +303,14 @@ footer a {
 
     footer {
         font-size: 18px;
+    }
+    #name{
+        font-size: x-large;
+    }
+    #map {
+        width: 100%;
+        height: 55vh;
+        margin: 70px 70px 10px 70px;
     }
 
 }
