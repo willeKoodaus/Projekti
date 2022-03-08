@@ -367,6 +367,8 @@ function getRoute(start, destination) {
       }));
       polylineGroup.addTo(map);
 
+      //variables for saving the route information
+
       const unixTimeStart = googleFormattedRoute[i].startTime;
       const startDate = new Date(unixTimeStart);
       const startTime = startDate.toLocaleTimeString(navigator.language,
@@ -381,6 +383,8 @@ function getRoute(start, destination) {
       wholeDuration += googleFormattedRoute[i].duration / 60;
       const distance = (googleFormattedRoute[i].distance / 1000).toFixed(2);
       const duration = Math.round(+googleFormattedRoute[i].duration / 60);
+
+      //route information is printed on the website
 
       document.getElementById(
           'print').innerHTML += `<h4>Klo ${startTime}—${endTime}:</h4><p>

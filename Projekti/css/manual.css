@@ -90,7 +90,7 @@ article ul {
 main {
     width: 100%;
     background: #C5E0E6;
-    text-align: center;
+    text-align: left;
     font-family: 'Red Hat Display', sans-serif;
     display: flex;
     justify-content: center;
@@ -123,6 +123,25 @@ img {
     margin-right: auto;
 }
 
+.centered {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    padding: 4px;
+    transform: translate(-50%, -50%);
+    background-color: rgb(256,256,256,0.5);
+    border-radius: 20px;
+
+}
+
+.container {
+    position: relative;
+    text-align: center;
+    color: black;
+    font-family: 'Red Hat Display', sans-serif;
+    font-weight: bold;
+    font-size: 17px;
+}
 
 footer {
     width: 100%;
@@ -216,13 +235,20 @@ footer a {
         padding: 10px 140px 10px 140px;
         margin-top: 70px;
         margin-bottom: 70px;
-        min-width: 70%;
         max-width: 70%;
         border-style: solid;
         overflow-y: auto;
         overflow-x: hidden;
     }
 
+    .container {
+        font-size: 25px;
+    }
+
+    .centered {
+        top: 50px;
+        padding: 12px;
+    }
 
     footer {
         font-size: 18px;
