@@ -87,7 +87,6 @@ function getActivities() {
 }
 
 // function for fetching the places from api.myhelsinki
-
 function getPlaces() {
   const proxy = 'https://api.allorigins.win/get?url=';
   const search = `https://open-api.myhelsinki.fi/v2/places/?tags_search=sights`;
@@ -118,14 +117,17 @@ events.addEventListener('change', function(event) {
         const newMarker = addMarker(coordinates, text, greenIcon);
         newMarker.on('click', function() {
 
-         const startDay = events.data[i].event_dates.starting_day.slice(8,10);
-         const startMonth = events.data[i].event_dates.starting_day.slice(5,7);
-         const startYear = events.data[i].event_dates.starting_day.slice(0,4);
-         const eventStartTime = events.data[i].event_dates.starting_day.slice(11,16);
-         const endDay = events.data[i].event_dates.ending_day.slice(8,10);
-         const endMonth = events.data[i].event_dates.starting_day.slice(5,7);
-         const endYear = events.data[i].event_dates.starting_day.slice(0,4);
-         const eventEndTime = events.data[i].event_dates.ending_day.slice(11,16)
+          const startDay = events.data[i].event_dates.starting_day.slice(8, 10);
+          const startMonth = events.data[i].event_dates.starting_day.slice(5,
+              7);
+          const startYear = events.data[i].event_dates.starting_day.slice(0, 4);
+          const eventStartTime = events.data[i].event_dates.starting_day.slice(
+              11, 16);
+          const endDay = events.data[i].event_dates.ending_day.slice(8, 10);
+          const endMonth = events.data[i].event_dates.starting_day.slice(5, 7);
+          const endYear = events.data[i].event_dates.starting_day.slice(0, 4);
+          const eventEndTime = events.data[i].event_dates.ending_day.slice(11,
+              16);
           document.querySelector(
               '#name').innerHTML = events.data[i].name.fi;
           document.querySelector(
@@ -175,13 +177,15 @@ activities.addEventListener('change', function(event) {
         };
         const newMarker = addMarker(coordinates, text, greenIcon);
         newMarker.on('click', function() {
-          document.getElementById('print').classList.replace('visible', 'hidden');
+          document.getElementById('print').
+              classList.
+              replace('visible', 'hidden');
           document.querySelector(
               '#name').innerHTML = activities[i].name;
           document.querySelector(
               '#address').innerHTML = activities[i].location.address;
           document.querySelector(
-             '#website').innerHTML = `<a href="${activities[i].www}" target="_blank">Lisätietoja</a>`;
+              '#website').innerHTML = `<a href="${activities[i].www}" target="_blank">Lisätietoja</a>`;
           document.querySelector(
               '#description').innerHTML = '';
           destinationLat = coordinates.latitude;
@@ -229,11 +233,10 @@ places.addEventListener('change', function(event) {
               '#name').innerHTML = places.data[i].name.fi;
           document.querySelector(
               '#address').innerHTML = places.data[i].location.address.street_address;
-          if (places.data[i].info_url.length > 0){
-          document.querySelector(
-              '#website').innerHTML = `<a href="${places.data[i].info_url}" target="_blank">Lisätietoja</a>`;
-          }
-          else {
+          if (places.data[i].info_url.length > 0) {
+            document.querySelector(
+                '#website').innerHTML = `<a href="${places.data[i].info_url}" target="_blank">Lisätietoja</a>`;
+          } else {
             document.querySelector(
                 '#website').innerHTML = '';
           }
@@ -354,6 +357,7 @@ function getRoute(start, destination) {
       }));
       polylineGroup.addTo(map);
 
+      //variables for saving the route information
       const unixTimeStart = googleFormattedRoute[i].startTime;
       const startDate = new Date(unixTimeStart);
       const startTime = startDate.toLocaleTimeString(navigator.language,
@@ -369,6 +373,7 @@ function getRoute(start, destination) {
       const distance = (googleFormattedRoute[i].distance / 1000).toFixed(2);
       const duration = Math.round(+googleFormattedRoute[i].duration / 60);
 
+      //route information is printed on the website
       document.getElementById(
           'print').innerHTML += `<h4>Klo ${startTime}—${endTime}:</h4><p>
 ${mode} ${duration} minuuttia (${distance} km)</p>`;

@@ -56,6 +56,8 @@ main {
     background: #C5E0E6;
     text-align: left;
     font-family: 'Red Hat Display', sans-serif;
+    display: flex;
+    justify-content: center;
 }
 
 main img {
@@ -70,13 +72,8 @@ body {
 }
 
 article {
-    margin: 70px;
     padding: 10px 40px 10px 40px;
     background-color: rgba(256, 256, 256, 0.7);
-    border-style: dashed;
-    overflow-y: auto;
-    max-height: 200px;
-    overflow-x: hidden;
 }
 
 img {
@@ -92,7 +89,7 @@ img {
     position: absolute;
     top: 30px;
     left: 50%;
-    padding: 5px;
+    padding: 4px;
     transform: translate(-50%, -50%);
     background-color: rgb(256,256,256,0.5);
     border-radius: 20px;
@@ -105,7 +102,7 @@ img {
     color: black;
     font-family: 'Red Hat Display', sans-serif;
     font-weight: bold;
-    font-size: 15px;
+    font-size: 17px;
 }
 
 footer {
@@ -178,9 +175,15 @@ footer a {
     }
 
     article {
-        min-height: 566px;
-        max-height: 566px;
+        min-height: 570px;
+        max-height: 570px;
         padding: 10px 140px 10px 140px;
+        margin-top: 70px;
+        margin-bottom: 70px;
+        max-width: 900px;
+        border-style: dashed;
+        overflow-y: auto;
+        overflow-x: hidden;
     }
 
     .container {
