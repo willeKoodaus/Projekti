@@ -119,7 +119,7 @@ events.addEventListener('change', function(event) {
           latitude: events.data[i].location.lat,
           longitude: events.data[i].location.lon,
         };
-        const newMarker = addMarker(coordinates, text, greenIcon);
+        const newMarker = addMarker(coordinates, text, eventIcon);
         newMarker.on('click', function() {
           polylineGroup.clearLayers();
           document.getElementById('print').
@@ -184,7 +184,7 @@ activities.addEventListener('change', function(event) {
           latitude: activities[i].location.coordinates.wgs84.lat,
           longitude: activities[i].location.coordinates.wgs84.lon,
         };
-        const newMarker = addMarker(coordinates, text, greenIcon);
+        const newMarker = addMarker(coordinates, text, sportsIcon);
         newMarker.on('click', function() {
           polylineGroup.clearLayers();
           document.getElementById('print').
@@ -237,7 +237,7 @@ places.addEventListener('change', function(event) {
           latitude: places.data[i].location.lat,
           longitude: places.data[i].location.lon,
         };
-        const newMarker = addMarker(coordinates, text, greenIcon);
+        const newMarker = addMarker(coordinates, text, sightsIcon);
         newMarker.on('click', function() {
           polylineGroup.clearLayers();
           document.getElementById('print').
