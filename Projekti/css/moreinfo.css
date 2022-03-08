@@ -90,7 +90,7 @@ article ul {
 main {
     width: 100%;
     background: #C5E0E6;
-    text-align: center;
+    text-align: left;
     font-family: 'Red Hat Display', sans-serif;
     display: flex;
     justify-content: center;
@@ -216,7 +216,6 @@ footer a {
         padding: 10px 140px 10px 140px;
         margin-top: 70px;
         margin-bottom: 70px;
-        min-width: 70%;
         max-width: 70%;
         border-style: solid;
         overflow-y: auto;
