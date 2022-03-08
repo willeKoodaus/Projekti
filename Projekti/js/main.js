@@ -87,6 +87,7 @@ function getActivities() {
 }
 
 // function for fetching the places from api.myhelsinki
+
 function getPlaces() {
   const proxy = 'https://api.allorigins.win/get?url=';
   const search = `https://open-api.myhelsinki.fi/v2/places/?tags_search=sights`;
@@ -116,6 +117,10 @@ events.addEventListener('change', function(event) {
         };
         const newMarker = addMarker(coordinates, text, greenIcon);
         newMarker.on('click', function() {
+          polylineGroup.clearLayers();
+          document.getElementById('print').
+              classList.
+              replace('visible', 'hidden');
 
           const startDay = events.data[i].event_dates.starting_day.slice(8, 10);
           const startMonth = events.data[i].event_dates.starting_day.slice(5,
@@ -177,6 +182,7 @@ activities.addEventListener('change', function(event) {
         };
         const newMarker = addMarker(coordinates, text, greenIcon);
         newMarker.on('click', function() {
+          polylineGroup.clearLayers();
           document.getElementById('print').
               classList.
               replace('visible', 'hidden');
@@ -229,6 +235,10 @@ places.addEventListener('change', function(event) {
         };
         const newMarker = addMarker(coordinates, text, greenIcon);
         newMarker.on('click', function() {
+          polylineGroup.clearLayers();
+          document.getElementById('print').
+              classList.
+              replace('visible', 'hidden');
           document.querySelector(
               '#name').innerHTML = places.data[i].name.fi;
           document.querySelector(
@@ -357,7 +367,6 @@ function getRoute(start, destination) {
       }));
       polylineGroup.addTo(map);
 
-      //variables for saving the route information
       const unixTimeStart = googleFormattedRoute[i].startTime;
       const startDate = new Date(unixTimeStart);
       const startTime = startDate.toLocaleTimeString(navigator.language,
@@ -373,7 +382,6 @@ function getRoute(start, destination) {
       const distance = (googleFormattedRoute[i].distance / 1000).toFixed(2);
       const duration = Math.round(+googleFormattedRoute[i].duration / 60);
 
-      //route information is printed on the website
       document.getElementById(
           'print').innerHTML += `<h4>Klo ${startTime}—${endTime}:</h4><p>
 ${mode} ${duration} minuuttia (${distance} km)</p>`;

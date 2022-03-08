@@ -117,6 +117,7 @@ footer {
     width: 100%;
     margin: 0.3rem 0;
     font-family: 'Red Hat Display', sans-serif;
+    font-size: 15px;
 }
 
 #whereWhenDuration {
@@ -175,6 +176,7 @@ footer {
     align-items: center;
     flex-direction: column;
     font-family: 'Red Hat Display', sans-serif;
+    font-size: 15px;
 }
 
 footer a {
@@ -272,6 +274,10 @@ footer a {
         padding: 0 60px 0 60px;
     }
 
+    footer {
+        font-size: 18px;
+    }
+
     .checkboxes {
         font-size: 18px;
     }
@@ -288,6 +294,10 @@ footer a {
 
     #description {
         max-width: 1000px;
+    }
+
+    #address, #whereWhenDuration, #description, #website {
+        font-size: 18px;
     }
 
 }
