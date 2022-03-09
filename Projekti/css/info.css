@@ -22,7 +22,7 @@ header {
 }
 
 #sidemenu {
-    background: #eef6f8;
+    background: #f8f6ee;
     width: 100%;
     font-family: 'Red Hat Display', sans-serif;
     color: black;
@@ -106,12 +106,18 @@ body {
     flex-direction: row-reverse;
     margin: 0;
     line-height: 1.5;
-   background: #C5E0E6;
+    background: #C5E0E6;
 }
 
 article {
     padding: 10px 40px 10px 40px;
-    background-color: #eef6f8;
+    background-color: #f8f6ee;
+    text-align: left;
+}
+
+video {
+    width: 75%;
+    height: auto;
 }
 
 img {
