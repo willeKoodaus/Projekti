@@ -25,7 +25,7 @@ main {
     background: #C5E0E6;
 }
 
-article {
+#info {
     padding: 10px 70px 0px 70px;
     display: flex;
     flex-wrap: wrap;
@@ -85,10 +85,14 @@ footer {
     font-family: 'Red Hat Display', sans-serif;
     font-size: large;
 }
+#name{
+    top-margin: 0px;
+}
 
 #navigate {
+    width: 100%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: right;
 }
 
 #navigate a {
@@ -203,6 +207,7 @@ footer a {
     overflow-x: hidden;
     font-family: 'Red Hat Display', sans-serif;
     font-size: 15px;
+    margin-left: 70px;
 }
 
 #print h3 {
@@ -265,6 +270,7 @@ footer a {
     #nav {
         font-size: 20px;
         padding: 10px;
+        margin-right: 70px;
     }
 
     nav {
