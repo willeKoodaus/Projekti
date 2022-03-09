@@ -251,7 +251,7 @@ places.addEventListener('change', function(event) {
                 '#info').innerHTML += `<p id="website"><a href="${places.data[i].info_url}" target="_blank">Lisätietoja</a></p>`;
           }
           document.querySelector(
-              '#info').innerHTML = `<p id="description">${places.data[i].description.intro}</p>`;
+              '#info').innerHTML += `<p id="description">${places.data[i].description.intro}</p>`;
           destinationLat = coordinates.latitude;
           destinationLon = coordinates.longitude;
 
