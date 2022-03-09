@@ -87,8 +87,9 @@ footer {
 }
 
 #navigate {
+    width: 100%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: right;
 }
 
 #navigate a {
@@ -266,6 +267,7 @@ footer a {
     #nav {
         font-size: 20px;
         padding: 10px;
+        margin-right: 70px;
     }
 
     nav {
