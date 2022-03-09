@@ -9,7 +9,7 @@ header {
 
 }
 
-aside {
+#mainmenu {
     background: #333333;
     width: 100%;
     font-family: 'Red Hat Display', sans-serif;
@@ -21,12 +21,29 @@ aside {
 
 }
 
-aside a {
+#sidemenu {
+    background: #545454;
+    width: 100%;
+    font-family: 'Red Hat Display', sans-serif;
+    color: black;
+    line-height: 200%;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+
+}
+
+#mainmenu a {
     text-decoration: none;
     color: black;
 }
 
-aside ul {
+#sidemenu a {
+    text-decoration: none;
+    color: white;
+}
+
+#mainmenu ul {
     list-style-type: none;
     margin: 10px;
     padding: 0;
@@ -34,17 +51,36 @@ aside ul {
 
 }
 
-aside li {
+#sidemenu ul {
+    list-style-type: none;
+    margin-top: 20px;
+    padding: 0;
+    overflow: hidden;
+}
+
+nav li {
     float: left;
 }
 
-aside li a {
+#mainmenu li a {
     display: block;
     color: #e7e7e7;
     text-align: center;
     padding: 0 30px 0 30px;
     text-decoration: none;
     font-weight: bold;
+}
+
+#sidemenu li a {
+    display: block;
+    color: #e7e7e7;
+    text-align: center;
+    padding: 10px;
+    margin: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    background: #3b399f;
+    border-radius: 20px;
 }
 
 article ul {
@@ -54,31 +90,48 @@ article ul {
 main {
     width: 100%;
     background: #545454;
-    text-align: center;
+    text-align: left;
     font-family: 'Red Hat Display', sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+main img {
+    align-items: center;
 }
 
 body {
     display: flex;
     flex-wrap: wrap;
+    flex-direction: row-reverse;
     margin: 0;
     line-height: 1.5;
+    background: #545454;
 }
 
 article {
-    margin: 70px;
     padding: 10px 40px 10px 40px;
-    background-color: rgba(256, 256, 256, 0.7);
-    border-style: dashed;
-    overflow-y: auto;
-    max-height: 200px;
-    overflow-x: hidden;
+    background-color: #f8f6ee;
 }
 
 img {
     max-width: 100%;
     height: auto;
     border-radius: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.centered {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    padding: 4px;
+    transform: translate(-50%, -50%);
+    background-color: rgb(256,256,256,0.5);
+    border-radius: 20px;
+
 }
 
 .container {
@@ -87,21 +140,30 @@ img {
     color: black;
     font-family: 'Red Hat Display', sans-serif;
     font-weight: bold;
+    font-size: 17px;
+}
+
+footer {
+    width: 100%;
+    background-color: #333333;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Red Hat Display', sans-serif;
     font-size: 15px;
 }
 
-.centered {
-    position: absolute;
-    top: 30px;
-    left: 50%;
-    transform: translate(-50%, -50%);
+footer a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
 }
 
-.themes {
-    width: 100%;
-    background-color: #545454;
+#themes {
     display: flex;
-    justify-content: center;
+    padding: 0;
 }
 
 .switch {
@@ -115,17 +177,17 @@ img {
 
 [name="infoTheme1"]{
     background: #004938;
-    -webkit-box-shadow: inset 0px 2.1em 0px -1.6em #00d0d0;
+    -webkit-box-shadow: inset 0 2.1em 0 -1.6em #00d0d0;
 }
 
 [name="infoTheme2"]{
     background: #ffa600;
-    -webkit-box-shadow: inset 0px 2.1em 0px -1.6em #ffe799;
+    -webkit-box-shadow: inset 0 2.1em 0 -1.6em #ffe799;
 }
 
 [name="infoTheme3"]{
     background: #151515;
-    -webkit-box-shadow: inset 0px 2.1em 0px -1.6em #ce4a02;
+    -webkit-box-shadow: inset 0 2.1em 0 -1.6em #3b399f;
 }
 
 ::-webkit-scrollbar {
@@ -138,13 +200,30 @@ img {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #e8551f;
+    background: #3b399f;
     border-radius: 10px;
 }
 
 @media only screen and (min-width: 700px) {
-    aside {
+    #mainmenu {
         font-size: 20px;
+    }
+
+    #sidemenu {
+        font-size: 18px;
+        width: 20%;
+        background: #545454;
+        margin-top: 70px;
+    }
+
+    #sidemenu li a{
+        padding: 20px;
+        margin: 30px;
+    }
+
+    main {
+        width: 80%;
+        background: #545454;
     }
 
     li a {
@@ -152,12 +231,28 @@ img {
     }
 
     article {
-        min-height: 550px;
-        max-height: 550px;
+        min-height: 570px;
+        max-height: 570px;
         padding: 10px 140px 10px 140px;
+        margin-top: 70px;
+        margin-bottom: 70px;
+        min-width: 70%;
+        max-width: 70%;
+        border-style: solid;
+        overflow-y: auto;
+        overflow-x: hidden;
     }
 
     .container {
         font-size: 25px;
+    }
+
+    .centered {
+        top: 50px;
+        padding: 12px;
+    }
+
+    footer {
+        font-size: 18px;
     }
 }

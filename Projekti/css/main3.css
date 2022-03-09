@@ -26,17 +26,17 @@ main {
 }
 
 article {
-    padding: 10px 70px 20px 70px;
+    padding: 10px 70px 0px 70px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
 
-aside {
+nav {
     background: #333333;
     width: 100%;
     font-family: 'Red Hat Display', sans-serif;
-    color: white;
+    color: #e7e7e7;
     line-height: 200%;
     font-size: 14px;
     display: flex;
@@ -44,7 +44,7 @@ aside {
 
 }
 
-aside a {
+nav a {
     text-decoration: none;
     color: black;
 }
@@ -52,7 +52,7 @@ aside a {
 ul {
     list-style-type: none;
     margin: 10px;
-    padding: 0px;
+    padding: 0;
     overflow: hidden;
 
 }
@@ -65,26 +65,30 @@ li a {
     display: block;
     color: #e7e7e7;
     text-align: center;
-    padding: 0px 30px 0px 30px;
+    padding: 0 30px 0 30px;
     text-decoration: none;
     font-weight: bold;
+}
+
+footer {
+    padding: 15px;
 }
 
 #map {
     width: 100%;
     height: 55vh;
-    margin: 70px 70px 10px 70px;
+    margin: 0px 0px 10px 0px;
 }
 
 #name, #navigate {
     width: 50%;
     font-family: 'Red Hat Display', sans-serif;
+    font-size: large;
 }
 
 #navigate {
     display: flex;
     justify-content: flex-end;
-    color: #e7e7e7;
 }
 
 #navigate a {
@@ -101,11 +105,35 @@ li a {
     border-radius: 15px;
 }
 
-#address, #whereWhenDuration, #description {
+#nav {
+    font-family: 'Red Hat Display', sans-serif;
+    background:#3b399f;
+    color: #e7e7e7;
+    border-radius: 20px;
+    font-size: 15px;
+    padding: 10px;
+}
+
+#address, #whereWhenDuration, #description, #website{
     width: 100%;
     margin: 0.3rem 0;
     font-family: 'Red Hat Display', sans-serif;
+    font-size: 15px;
     color: #e7e7e7;
+}
+
+#whereWhenDuration {
+    line-height: 1.5;
+}
+
+#website a:link {
+    color: black;
+    font-weight: bold;
+}
+
+#website a:hover {
+    color: #AC8887;
+    font-weight: bold;
 }
 
 .container {
@@ -118,7 +146,9 @@ li a {
 }
 
 .checkboxes {
-    padding: 0px 70px 20px 70px;
+    padding: 0 70px 20px 70px;
+    font-family: 'Red Hat Display', sans-serif;
+    font-size: 15px;
 }
 
 /* leaflet ikonit */
@@ -140,11 +170,58 @@ li a {
     line-height: 30px;
 }
 
-.themes {
+footer {
     width: 100%;
-    background-color: #545454;
+    background-color: #333333;
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Red Hat Display', sans-serif;
+    font-size: 15px;
+}
+
+footer a {
+    text-decoration: none;
+    color: black;
+    font-family: 'Red Hat Display', sans-serif;
+    font-weight: bold;
+}
+
+#themes {
+    display: flex;
+    padding: 0;
+}
+
+#print{
+    padding: 10px 40px 10px 40px;
+    margin-top: 20px;
+    background-color: rgba(256, 256, 256, 0.7);
+    border-style: dashed;
+    overflow-y: auto;
+    max-height: 200px;
+    width: 200px;
+    overflow-x: hidden;
+    font-family: 'Red Hat Display', sans-serif;
+    font-size: 15px;
+}
+
+#print h3 {
+    font-size: 17px;
+}
+
+#print br {
+    display: block;
+    content: "";
+    margin-top: 30px;
+}
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
 }
 
 .switch {
@@ -158,17 +235,17 @@ li a {
 
 [name="mainTheme1"]{
     background: #004938;
-    -webkit-box-shadow: inset 0px 2.1em 0px -1.6em #00d0d0;
+    -webkit-box-shadow: inset 0 2.1em 0 -1.6em #00d0d0;
 }
 
 [name="mainTheme2"]{
     background: #ffa600;
-    -webkit-box-shadow: inset 0px 2.1em 0px -1.6em #ffe799;
+    -webkit-box-shadow: inset 0 2.1em 0 -1.6em #ffe799;
 }
 
 [name="mainTheme3"]{
     background: #151515;
-    -webkit-box-shadow: inset 0px 2.1em 0px -1.6em #ce4a02;
+    -webkit-box-shadow: inset 0 2.1em 0 -1.6em #3b399f;
 }
 
 ::-webkit-scrollbar {
@@ -181,17 +258,60 @@ li a {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #e8551f;
+    background: #3b399f;
     border-radius: 10px;
 }
 
 @media only screen and (min-width: 600px) {
-    aside {
+    #nav {
+        font-size: 20px;
+        padding: 10px;
+    }
+
+    nav {
         font-size: 20px;
     }
 
     li a {
-        padding: 0px 60px 0px 60px;
+        padding: 0 60px 0 60px;
+    }
+
+    footer {
+        font-size: 18px;
+    }
+
+    .checkboxes {
+        font-size: 18px;
+    }
+
+    #print {
+        width: 900px;
+        font-size: 16px;
+        line-height: 0.6;
+    }
+
+    #print h3 {
+        font-size: 18px;
+    }
+
+    #description {
+        max-width: 1000px;
+    }
+
+    #address, #whereWhenDuration, #description, #website {
+        font-size: 18px;
+    }
+
+    footer {
+        font-size: 18px;
+    }
+    #name{
+        font-size: x-large;
+    }
+    #map {
+        width: 100%;
+        height: 55vh;
+        margin: 70px 70px 10px 70px;
     }
 
 }
