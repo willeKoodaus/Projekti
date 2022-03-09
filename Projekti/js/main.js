@@ -137,14 +137,15 @@ events.addEventListener('change', function(event) {
           const endYear = events.data[i].event_dates.starting_day.slice(0, 4);
           const eventEndTime = events.data[i].event_dates.ending_day.slice(11,
               16);
+          document.querySelector('#info').innerHTML = "";
           document.querySelector(
-              '#name').innerHTML = events.data[i].name.fi;
+              '#info').innerHTML += `<h3 id="name">${events.data[i].name.fi}</h3>`;
           document.querySelector(
-              '#address').innerHTML = events.data[i].location.address.street_address;
+              '#info').innerHTML += `<h4 id="address">${events.data[i].location.address.street_address}</h4>`;
           document.querySelector(
-              '#whereWhenDuration').innerHTML = `<strong>Alkaa:</strong> ${startDay}.${startMonth}.${startYear} klo ${eventStartTime}<br><strong>Päättyy:</strong> ${endDay}.${endMonth}.${endYear} klo ${eventEndTime}`;
+              '#info').innerHTML += `<p id="whereWhenDuration"><strong>Alkaa:</strong> ${startDay}.${startMonth}.${startYear} klo ${eventStartTime}<br><strong>Päättyy:</strong> ${endDay}.${endMonth}.${endYear} klo ${eventEndTime}</p>`;
           document.querySelector(
-              '#description').innerHTML = events.data[i].description.intro;
+              '#info').innerHTML += `<p id="description">${events.data[i].description.intro}</p>`;
           destinationLat = coordinates.latitude;
           destinationLon = coordinates.longitude;
 
@@ -162,13 +163,13 @@ events.addEventListener('change', function(event) {
       map.removeLayer(markerEvents[i]);
     }
     document.querySelector(
-        '#name').innerHTML = '';
+        '#name').remove();
     document.querySelector(
-        '#address').innerHTML = '';
+        '#address').remove();
     document.querySelector(
-        '#whereWhenDuration').innerHTML = '';
+        '#whereWhenDuration').remove();
     document.querySelector(
-        '#description').innerHTML = '';
+        '#description').remove();
   }
 });
 
@@ -190,14 +191,13 @@ activities.addEventListener('change', function(event) {
           document.getElementById('print').
               classList.
               replace('visible', 'hidden');
+          document.querySelector('#info').innerHTML = "";
           document.querySelector(
-              '#name').innerHTML = activities[i].name;
+              '#info').innerHTML += `<h3 id="name">${activities[i].name}</h3>`;
           document.querySelector(
-              '#address').innerHTML = activities[i].location.address;
+              '#info').innerHTML += `<h4 id="address">${activities[i].location.address}</h4>`;
           document.querySelector(
-              '#website').innerHTML = `<a href="${activities[i].www}" target="_blank">Lisätietoja</a>`;
-          document.querySelector(
-              '#description').innerHTML = '';
+              '#info').innerHTML += `<p id="website"><a href="${activities[i].www}" target="_blank">Lisätietoja</a></p>`;
           destinationLat = coordinates.latitude;
           destinationLon = coordinates.longitude;
 
@@ -215,13 +215,11 @@ activities.addEventListener('change', function(event) {
       map.removeLayer(markerActivities[i]);
     }
     document.querySelector(
-        '#name').innerHTML = '';
+        '#name').remove();
     document.querySelector(
-        '#address').innerHTML = '';
+        '#address').remove();
     document.querySelector(
-        '#website').innerHTML = '';
-    document.querySelector(
-        '#description').innerHTML = '';
+        '#website').remove();
   }
 });
 
@@ -243,19 +241,17 @@ places.addEventListener('change', function(event) {
           document.getElementById('print').
               classList.
               replace('visible', 'hidden');
+          document.querySelector('#info').innerHTML = "";
           document.querySelector(
-              '#name').innerHTML = places.data[i].name.fi;
+              '#info').innerHTML += `<h3 id="name">${places.data[i].name.fi}</h3>`;
           document.querySelector(
-              '#address').innerHTML = places.data[i].location.address.street_address;
+              '#info').innerHTML += `<h4 id="address">${places.data[i].location.address.street_address}</h4>`;
           if (places.data[i].info_url.length > 0) {
             document.querySelector(
-                '#website').innerHTML = `<a href="${places.data[i].info_url}" target="_blank">Lisätietoja</a>`;
-          } else {
-            document.querySelector(
-                '#website').innerHTML = '';
+                '#info').innerHTML += `<p id="website"><a href="${places.data[i].info_url}" target="_blank">Lisätietoja</a></p>`;
           }
           document.querySelector(
-              '#description').innerHTML = places.data[i].description.intro;
+              '#info').innerHTML = `<p id="description">${places.data[i].description.intro}</p>`;
           destinationLat = coordinates.latitude;
           destinationLon = coordinates.longitude;
 
@@ -273,13 +269,13 @@ places.addEventListener('change', function(event) {
       map.removeLayer(markerSights[i]);
     }
     document.querySelector(
-        '#name').innerHTML = '';
+        '#name').remove();
     document.querySelector(
-        '#address').innerHTML = '';
+        '#address').remove();
     document.querySelector(
-        '#website').innerHTML = '';
+        '#website').remove();
     document.querySelector(
-        '#description').innerHTML = '';
+        '#description').remove();
   }
 });
 
