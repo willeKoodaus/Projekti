@@ -1,16 +1,16 @@
 header {
-    background: #093A3E;
+    background: #ffa600;
     width: 100%;
     text-align: center;
     font-family: 'Red Hat Display', sans-serif;
-    color: white;
+    color: #003098;
     padding: 20px;
     font-size: 20px;
 
 }
 
 #mainmenu {
-    background: #6FAFC0;
+    background: #ffeb33;
     width: 100%;
     font-family: 'Red Hat Display', sans-serif;
     color: white;
@@ -22,7 +22,7 @@ header {
 }
 
 #sidemenu {
-    background: #eef6f8;
+    background: #ffe799;
     width: 100%;
     font-family: 'Red Hat Display', sans-serif;
     color: black;
@@ -64,7 +64,7 @@ nav li {
 
 #mainmenu li a {
     display: block;
-    color: black;
+    color: #003098;
     text-align: center;
     padding: 0 30px 0 30px;
     text-decoration: none;
@@ -73,13 +73,13 @@ nav li {
 
 #sidemenu li a {
     display: block;
-    color: black;
+    color: #003098;
     text-align: center;
     padding: 10px;
     margin: 10px;
     text-decoration: none;
     font-weight: bold;
-    background: #AC8887;
+    background: #ff6324;
     border-radius: 20px;
 }
 
@@ -89,7 +89,7 @@ article ul {
 
 main {
     width: 100%;
-    background: #C5E0E6;
+    background: #ffe799;
     text-align: center;
     font-family: 'Red Hat Display', sans-serif;
     display: flex;
@@ -106,7 +106,7 @@ body {
     flex-direction: row-reverse;
     margin: 0;
     line-height: 1.5;
-    background: #C5E0E6;
+    background: #ffe799;
 }
 
 article {
@@ -126,7 +126,7 @@ img {
 
 footer {
     width: 100%;
-    background-color: #6FAFC0;
+    background-color: #ffa600;
     padding: 15px;
     display: flex;
     justify-content: center;
@@ -181,7 +181,7 @@ footer a {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #AC8887;
+    background: #ff6324;
     border-radius: 10px;
 }
 
@@ -193,7 +193,7 @@ footer a {
     #sidemenu {
         font-size: 18px;
         width: 20%;
-        background: #C5E0E6;
+        background: #ffe799;
         margin-top: 70px;
     }
 

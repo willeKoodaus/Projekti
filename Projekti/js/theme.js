@@ -35,6 +35,18 @@ function changeTheme() {
       link.setAttribute('href', "css/info3.css");
       break;
 
+    case 'authorsTheme1':
+      link.setAttribute('href', "css/authors.css");
+      break;
+
+    case 'authorsTheme2':
+      link.setAttribute('href', "css/authors2.css");
+      break;
+
+    case 'authorsTheme3':
+      link.setAttribute('href', "css/authors3.css");
+      break;
+
     default:
       console.log('error');
   }
