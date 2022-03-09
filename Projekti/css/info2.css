@@ -112,6 +112,12 @@ body {
 article {
     padding: 10px 40px 10px 40px;
     background-color: #f8f6ee;
+    text-align: left;
+}
+
+video {
+    width: 75%;
+    height: auto;
 }
 
 img {
