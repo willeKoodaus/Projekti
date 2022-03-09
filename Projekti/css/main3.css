@@ -25,6 +25,13 @@ main {
     background: #545454;
 }
 
+#info {
+    padding: 10px 70px 0px 70px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
 article {
     padding: 10px 70px 0px 70px;
     display: flex;
