@@ -246,12 +246,12 @@ places.addEventListener('change', function(event) {
               '#info').innerHTML += `<h3 id="name">${places.data[i].name.fi}</h3>`;
           document.querySelector(
               '#info').innerHTML += `<h4 id="address">${places.data[i].location.address.street_address}</h4>`;
+          document.querySelector(
+              '#info').innerHTML += `<p id="description">${places.data[i].description.intro}</p>`;
           if (places.data[i].info_url.length > 0) {
             document.querySelector(
                 '#info').innerHTML += `<p id="website"><a href="${places.data[i].info_url}" target="_blank">Lisätietoja</a></p>`;
           }
-          document.querySelector(
-              '#info').innerHTML += `<p id="description">${places.data[i].description.intro}</p>`;
           destinationLat = coordinates.latitude;
           destinationLon = coordinates.longitude;
 
