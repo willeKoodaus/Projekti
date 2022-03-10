@@ -22,7 +22,7 @@ header {
 }
 
 #sidemenu {
-    background: #f8f6ee;
+    background: #eef6f8;
     width: 100%;
     font-family: 'Red Hat Display', sans-serif;
     color: black;
@@ -85,6 +85,10 @@ nav li {
 
 article ul {
     list-style-position: inside;
+}
+
+article a {
+    color: black;
 }
 
 main {
