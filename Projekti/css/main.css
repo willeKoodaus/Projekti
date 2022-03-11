@@ -116,6 +116,7 @@ footer {
     border-radius: 20px;
     font-size: 15px;
     padding: 10px;
+    margin-right: 10px;
 }
 
 #address, #whereWhenDuration, #description, #website{
@@ -149,7 +150,7 @@ footer {
 }
 
 .checkboxes {
-    padding: 0 70px 20px 70px;
+    padding: 0 10px 20px 10px;
     font-family: 'Red Hat Display', sans-serif;
     font-size: 15px;
 }
@@ -287,6 +288,7 @@ footer a {
 
     .checkboxes {
         font-size: 18px;
+        padding: 0 70px 20px 70px;
     }
 
     #print {

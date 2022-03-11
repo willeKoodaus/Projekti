@@ -81,6 +81,7 @@ nav li {
     font-weight: bold;
     background: #AC8887;
     border-radius: 20px;
+    width: 90px;
 }
 
 article ul {
@@ -89,7 +90,7 @@ article ul {
 
 main {
     width: 100%;
-    background: #C5E0E6;
+    background: #eef6f8;
     text-align: center;
     font-family: 'Red Hat Display', sans-serif;
     display: flex;
@@ -111,7 +112,7 @@ body {
 
 article {
     padding: 10px 40px 10px 40px;
-    background-color: rgba(256, 256, 256, 0.7);
+    background-color: #eef6f8;
 }
 
 img {
@@ -185,7 +186,7 @@ footer a {
     border-radius: 10px;
 }
 
-@media only screen and (min-width: 700px) {
+@media only screen and (min-width: 1200px) {
     #mainmenu {
         font-size: 20px;
     }
@@ -200,10 +201,12 @@ footer a {
     #sidemenu li a{
         padding: 20px;
         margin: 30px;
+        width: 200px;
     }
 
     main {
         width: 80%;
+        background: #C5E0E6;
     }
 
     li a {

@@ -81,6 +81,7 @@ nav li {
     font-weight: bold;
     background: #ff6324;
     border-radius: 20px;
+    width: 90px;
 }
 
 article ul {
@@ -185,7 +186,7 @@ footer a {
     border-radius: 10px;
 }
 
-@media only screen and (min-width: 700px) {
+@media only screen and (min-width: 1200px) {
     #mainmenu {
         font-size: 20px;
     }
@@ -197,9 +198,10 @@ footer a {
         margin-top: 70px;
     }
 
-    #sidemenu li a{
+    #sidemenu li a {
         padding: 20px;
         margin: 30px;
+        width: 200px;
     }
 
     main {
