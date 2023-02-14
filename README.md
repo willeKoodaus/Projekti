@@ -1,5 +1,6 @@
 # Student's Activity Map Application
 Web application showing different kind of activities available in Helsinki. Uses Open Street Map, Digitransit Routing API, MyHelsinki Open API and Lipas API.
+Deployed application can be found on https://users.metropolia.fi/~hannems/projekti/
 
 ## General info
 Application aimed at student's showing different things to do in Helsinki. Features of the application:
